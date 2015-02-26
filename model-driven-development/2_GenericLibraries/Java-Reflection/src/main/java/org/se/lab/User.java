@@ -21,7 +21,7 @@ public class User
 	/*
 	 * Property: id
 	 */
-	private int id;
+	protected int id;
 	public int getId()
 	{
 		return id;

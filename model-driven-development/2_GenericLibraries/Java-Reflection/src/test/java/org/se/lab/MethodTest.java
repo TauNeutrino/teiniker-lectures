@@ -45,17 +45,4 @@ public class MethodTest
 		
 		Assert.assertEquals("7,teini,*****", s);
 	}
-
-	@Test
-	public void testInvokeSetId() throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException 
-	{
-		User user = new User(7, "teini", "*****");
-	
-		Method m = user.getClass().getDeclaredMethod("setId", int.class);
-		// Note that we access a private field!!!
-		m.setAccessible(true);
-		m.invoke(user, 17);
-		
-		Assert.assertEquals(17, user.getId());
-	}
 }

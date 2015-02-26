@@ -36,9 +36,6 @@ public class FieldTest
 		User user = new User(7, "teini", "*****");
 		
 		Field id = user.getClass().getDeclaredField("id");
-
-		// Note that we access a private field!!!
-		id.setAccessible(true);
 		id.setInt(user, 17);
 		Assert.assertEquals(17, user.getId());
 
