@@ -35,9 +35,9 @@ public class LoggingDecorator
 	/*
 	 * Handle method invocation
 	 */
-
+	@Override
 	public Object invoke(Object proxy, Method m, Object[] args)
-			throws Throwable
+		throws Throwable
 	{
 		Object result;
 		try
