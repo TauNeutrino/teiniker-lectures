@@ -26,16 +26,4 @@ public class XmlListBuilder
 		out.append("</list>");
 		return out.toString();
 	}
-	
-	public String toString()
-	{
-		StringBuilder out = new StringBuilder();
-		out.append("list:\n");
-		for(String item : list)
-		{
-			out.append("\t- ").append(item).append("\n");
-		}
-		return out.toString();
-	}
-	
 }
