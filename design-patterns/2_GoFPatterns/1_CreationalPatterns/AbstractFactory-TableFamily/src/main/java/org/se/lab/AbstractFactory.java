@@ -9,6 +9,8 @@ public interface AbstractFactory
     final AbstractFactory HSQLDB = new ConcreteFactoryHsqldb();    
     final AbstractFactory POSTGRESQL = new ConcreteFactoryPostgresql();
     
+//    final AbstractFactory INSTANCE = new ConcreteFactoryHsqldb(); 
+    
     // Factory methods
     PersonTable createPersonTable();
     ArticleTable createArticleTable();
