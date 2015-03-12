@@ -10,7 +10,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ViewHelperTest
 {
-    private static final String html = 
+	private ApplicationContext context;
+
+	private static final String html = 
     	"<TABLE border=\"1\">\n"+
     	"  <TR>\n" +
     	"    <TD>3</TD>\n" +
@@ -33,10 +35,8 @@ public class ViewHelperTest
     @Test
     public void testViewHelper()
     {
-    	ApplicationContext context = 
-    			new ClassPathXmlApplicationContext("Dependencies.xml");
-		PersonViewHelper helper = context.getBean("personHelper", 
-				org.se.lab.presentation.PersonViewHelper.class);
+    	context = new ClassPathXmlApplicationContext("Dependencies.xml");
+		PersonViewHelper helper = context.getBean("personHelper", PersonViewHelper.class);
         
         helper.setPerson("7", "Wolf", "Haas");
         helper.setPerson("3", "Stefan", "Zweig");
