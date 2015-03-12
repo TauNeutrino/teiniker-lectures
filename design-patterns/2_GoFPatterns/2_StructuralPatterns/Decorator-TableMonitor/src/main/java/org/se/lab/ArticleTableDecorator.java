@@ -2,7 +2,7 @@ package org.se.lab;
 
 import java.util.List;
 
-class ArticleTableDecorator // package private
+abstract class ArticleTableDecorator // package private
 	implements ArticleTable
 {
 	/*
