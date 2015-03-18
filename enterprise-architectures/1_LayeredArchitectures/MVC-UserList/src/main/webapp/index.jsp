@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<jsp:useBean id="user" class="org.se.lab.presentation.api.UserBean" scope="request"/>
+<jsp:useBean id="user" class="org.se.lab.presentation.UserBean" scope="request"/>
 
 
 <html>
@@ -51,7 +51,9 @@
 		<p><a href="./index.jsp">Refresh User List</a></p>
 		
 		
-		<table border="0">${user.userTable}</table>
+		<table border="0">
+			${user.userTable}
+		</table>
 		
         <h6>
         	${user.timeStamp}
