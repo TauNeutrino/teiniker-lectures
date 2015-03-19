@@ -24,19 +24,20 @@ public class UserBean
 		try
 		{
 			UserService service = factory.createUserService();
-			List<User> users = service.findAllUsers();
-			
+			List<User> users = service.findAllUsers();			
+			html.append("<table border=\"0\">");
 			for (User user : users)
 			{
-				html.append("<tr>");
-				html.append("<td width=\"150\">").append(user.getFirstname()).append("</td>");
-				html.append("<td width=\"150\">").append(user.getLastname()).append("</td>");
-				html.append("<td width=\"150\">").append(user.getUsername()).append("</td>");
-				html.append("<td width=\"150\">").append(user.getPassword()).append("</td>");
-				html.append("<td width=\"100\" align=\"center\"><form method = \"post\" action = \"/MVC-UserList/controller\"><input type = \"hidden\" name = \"id\" value = \"");
+				html.append("    <tr>");
+				html.append("        <td width=\"150\">").append(user.getFirstname()).append("</td>");
+				html.append("        <td width=\"150\">").append(user.getLastname()).append("</td>");
+				html.append("        <td width=\"150\">").append(user.getUsername()).append("</td>");
+				html.append("        <td width=\"150\">").append(user.getPassword()).append("</td>");
+				html.append("        <td width=\"100\" align=\"center\"><form method = \"post\" action = \"/MVC-UserList/controller\"><input type = \"hidden\" name = \"id\" value = \"");
 				html.append(user.getId()).append("\"><input type = \"submit\" name = \"action\" value = \"Delete\" /></form></td>");
-				html.append("</tr>").append("\n");
+				html.append("    </tr>").append("\n");
 			}
+			html.append("</table>");
 		} 
 		catch (Exception e)
 		{

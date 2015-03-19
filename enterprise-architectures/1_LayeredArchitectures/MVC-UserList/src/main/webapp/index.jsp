@@ -49,11 +49,8 @@
     	<br/>    	    
 		
 		<p><a href="./index.jsp">Refresh User List</a></p>
-		
-		
-		<table border="0">
-			${user.userTable}
-		</table>
+				
+		${user.userTable}
 		
         <h6>
         	${user.timeStamp}
