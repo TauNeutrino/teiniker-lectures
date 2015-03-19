@@ -14,7 +14,7 @@
 
 		<h1>User List Example</h1>
 
-    	<form method="get" action="controller">
+    	<form method="post" action="controller">
         	<table border="1">
             	<tr>
             		<th width="50">Id</th>

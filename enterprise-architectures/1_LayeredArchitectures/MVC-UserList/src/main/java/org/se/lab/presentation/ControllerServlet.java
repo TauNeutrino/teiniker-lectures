@@ -8,26 +8,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.se.lab.presentation.commands.WebCommand;
 
 
-public class ControllerServlet extends HttpServlet
-{
+
+public class ControllerServlet 
+	extends HttpServlet
+{	
 	private static final long serialVersionUID = -1L;
+
+	private final Logger LOG = Logger.getLogger(ControllerServlet.class); 
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException
 	{
-		doGet(request, response);
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-		throws ServletException, IOException
-	{
+		LOG.debug("GET " + request.getQueryString());
+		System.out.println("GET " + request.getQueryString());
 		response.setContentType("text/html");
-
-		String action = request.getParameter("action");
-						
+		
+		String action = request.getParameter("action");						
 		if(action != null)
 		{	    	
 			try
@@ -44,6 +44,12 @@ public class ControllerServlet extends HttpServlet
 			}	    	
 		}
 	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+		throws ServletException, IOException
+	{
+		doPost(request, response);
+	}
 		
 
     /*
@@ -57,6 +63,7 @@ public class ControllerServlet extends HttpServlet
 		final String commandClassName = 
 			"org.se.lab.presentation.commands." + action + "Command";
 		
+		LOG.debug("load WebCommand: " + commandClassName);
 		result = Class.forName(commandClassName);
 		return (WebCommand) result.newInstance();
 	}
@@ -69,6 +76,7 @@ public class ControllerServlet extends HttpServlet
 		throws ServletException,
 		IOException
 	{
+    	LOG.debug("forward to: " + page);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
 		dispatcher.forward(request, response);
 	}
