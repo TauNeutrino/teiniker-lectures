@@ -27,8 +27,9 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
-
 		</plugins>
+		
+		<finalName>MVC-UserList</finalName>
 	</build>
 
 	<dependencies>
