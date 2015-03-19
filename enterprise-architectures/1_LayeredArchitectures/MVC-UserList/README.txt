@@ -9,29 +9,59 @@ root66
 # systemctl stop mysqld.service
 
 
-How to install the JDBC driver in Tomcat?
+How to install the JDBC driver in Wildfly AS?
 ---------------------------------------------------------------------
 
-Copy the lib/mysql/mysql-connector-java-5.1.13-bin.jar file
-into the Tomcat's lib directory:
+Install a new module within the Wildfly AS:
 
-$ cd install/apache-tomcat-8.0.11
-$ tree lib/
-...
-├── mysql-connector-java-5.1.13-bin.jar
-...
+wildfly-8.2.0.Final/modules/com/mysql/
+└── main
+    ├── module.xml
+    └── mysql-connector-java-5.1.24-bin.jar
 
 
-How to set the JDBC properties?
----------------------------------------------------------------------
-Edit the jdbc.properties file.
+<module xmlns="urn:jboss:module:1.0" name="com.mysql">
+        <resources>             
+                <resource-root path="mysql-connector-java-5.1.24-bin.jar"/>     
+        </resources>
+        <dependencies>
+                <module name="javax.api"/>
+        </dependencies>
+</module>
 
-Here are the default settings:
+Add a new <datasource> and <driver> element to the standalone.xml file:
 
-jdbc.driver=com.mysql.jdbc.Driver
-jdbc.url=jdbc:mysql://localhost:3306/testdb
-jdbc.username=student
-jdbc.password=student
+wildfly-8.2.0.Final/standalone/configuration/standalone.xml:
+
+		<subsystem xmlns="urn:jboss:domain:datasources:2.0">
+            <datasources>
+                <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
+                    <driver>h2</driver>
+                    <security>
+                        <user-name>sa</user-name>
+                        <password>sa</password>
+                    </security>
+                </datasource>
+                <datasource jndi-name="java:jboss/datasources/MySqlDS" pool-name="MySqlDS" enabled="true" use-java-context="true" use-ccm="true">
+                    <connection-url>jdbc:mysql://localhost:3306/testdb</connection-url>
+                    <driver>mysql</driver>
+                    <security>
+                        <user-name>student</user-name>
+                        <password>student</password>
+                    </security>
+                </datasource>
+                <drivers>
+                    <driver name="h2" module="com.h2database.h2">
+                        <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+                    </driver>
+                    <driver name="mysql" module="com.mysql">
+                        <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+                    </driver>
+                </drivers>
+            </datasources>
+        </subsystem>
+
 
 
 How to create the user table in the MySQL server?
