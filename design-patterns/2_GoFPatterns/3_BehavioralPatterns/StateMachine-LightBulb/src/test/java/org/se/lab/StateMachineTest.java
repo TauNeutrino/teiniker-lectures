@@ -36,7 +36,7 @@ public class StateMachineTest
 	{
 		sm.burnOut();
 		
-		assertEquals(LightBulbSM.OFF, sm.getState());		
+		assertEquals(LightBulbSM.FINAL, sm.getState());		
 	}
 
 	@Test
