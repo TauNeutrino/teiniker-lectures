@@ -8,10 +8,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.se.lab.presentation.ServiceFactory;
+import org.se.lab.business.ServiceFactory;
+import org.se.lab.presentation.AbstractController;
 
 
 public abstract class WebCommand
+	extends AbstractController
 {
 	protected ServletContext ctx;
 	protected HttpServletRequest req;
@@ -40,5 +42,4 @@ public abstract class WebCommand
 	
 	public abstract void process()
 		throws ServletException, IOException;
-
 }

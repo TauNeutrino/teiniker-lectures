@@ -12,7 +12,6 @@ import org.apache.log4j.Logger;
 import org.se.lab.presentation.commands.WebCommand;
 
 
-
 public class ControllerServlet 
 	extends HttpServlet
 {	
@@ -21,7 +20,7 @@ public class ControllerServlet
 	private final Logger LOG = Logger.getLogger(ControllerServlet.class); 
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException
+		throws IOException, ServletException
 	{
 		LOG.debug("GET " + request.getQueryString());
 		System.out.println("GET " + request.getQueryString());
@@ -45,12 +44,19 @@ public class ControllerServlet
 		}
 	}
 
+	
+	// Don't do that in a real Web application!
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 		throws ServletException, IOException
 	{
 		doPost(request, response);
 	}
-		
+
+	
+	/*
+	 * Utility methods
+	 */
+
 
     /*
      * This Command Factory Method uses the given string to instantiate a 
@@ -69,7 +75,7 @@ public class ControllerServlet
 	}
 
 
-    /**
+    /*
      * We use the RequestDispatcher interface to forward requests to another page.
      */
     protected void forward(String page, HttpServletRequest request, HttpServletResponse response)

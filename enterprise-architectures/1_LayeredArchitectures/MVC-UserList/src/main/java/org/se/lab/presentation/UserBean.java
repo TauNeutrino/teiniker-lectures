@@ -1,16 +1,20 @@
 package org.se.lab.presentation;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.se.lab.business.ServiceFactory;
 import org.se.lab.business.UserService;
 import org.se.lab.data.User;
 
 
 public class UserBean
+	extends AbstractController
 {
-	private final Logger logger = Logger.getLogger(UserBean.class);	
+	private final Logger LOG = Logger.getLogger(UserBean.class);	
 	private final ServiceFactory factory = new ServiceFactory();
 	
 	
@@ -20,10 +24,14 @@ public class UserBean
 
 	public String getUserTable()
 	{
+		LOG.debug("getUserTable()");
+		
+		Connection c = null;
 		StringBuilder html = new StringBuilder();
 		try
 		{
-			UserService service = factory.createUserService();
+			c = createConnection();
+			UserService service = factory.createUserService(c);
 			List<User> users = service.findAllUsers();			
 			html.append("<table border=\"0\">");
 			for (User user : users)
@@ -41,8 +49,21 @@ public class UserBean
 		} 
 		catch (Exception e)
 		{
-			// TODO: generate message
-			logger.error("Can't create user HTML table", e);
+			// TODO: generate HTML message
+			LOG.error("Can't create user HTML table", e);
+		}
+		finally
+		{
+			if(c != null)
+				try
+				{
+					c.close();
+				}
+				catch (SQLException e)
+				{
+					// TODO: generate HTML message
+					LOG.error("Can't close database connection!", e);
+				}
 		}
 		return html.toString();
 	}
@@ -50,6 +71,8 @@ public class UserBean
 	
 	public String getTimeStamp()
 	{
+		LOG.debug("getTimeStamp()");
+		
 		Date timeStamp = new Date();
 		return timeStamp.toString();
 	}
