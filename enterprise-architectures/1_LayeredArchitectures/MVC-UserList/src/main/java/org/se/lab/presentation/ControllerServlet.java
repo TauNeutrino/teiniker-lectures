@@ -22,7 +22,7 @@ public class ControllerServlet
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws IOException, ServletException
 	{
-		LOG.debug("GET " + request.getQueryString());
+		LOG.debug("POST " + request.getQueryString());
 		System.out.println("GET " + request.getQueryString());
 		response.setContentType("text/html");
 		
@@ -49,6 +49,8 @@ public class ControllerServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 		throws ServletException, IOException
 	{
+		LOG.debug("GET " + request.getQueryString());
+		
 		doPost(request, response);
 	}
 
