@@ -17,7 +17,10 @@ import org.junit.Test;
 
 public class XsltTest 
 {
+	private static final String SRC_DIR = "src/test/resources";
+	private static final String DEST_DIR = "target";
 
+	
 	@Test
 	public void testCpdReport() throws TransformerException, IOException
 	{
@@ -39,17 +42,17 @@ public class XsltTest
 	{
 		process("xml/javancss-report.xml", 
 				"xml/javancss-classes.xslt", 
-				"javancss-classes.xml");		
+				"javancss-ccn.xml");		
 	}
 	
 	
 	protected void process(final String xml, final String xslt, final String out) 
 		throws IOException, TransformerException
 	{
-		Source xmlSource = new StreamSource(new File(xml));
-		Source xsltSource = new StreamSource(new File(xslt));
+		Source xmlSource = new StreamSource(new File(SRC_DIR, xml));
+		Source xsltSource = new StreamSource(new File(SRC_DIR, xslt));
 		
-		Result result = new StreamResult(new FileWriter(new File(out)));
+		Result result = new StreamResult(new FileWriter(new File(DEST_DIR, out)));
 		
 		// create an instance of TransformerFactory
 		TransformerFactory transFact = TransformerFactory.newInstance();

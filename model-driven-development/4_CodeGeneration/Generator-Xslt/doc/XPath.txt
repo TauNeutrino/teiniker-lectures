@@ -1,7 +1,0 @@
-XPath Expressions
-=================
-
-/xmi:XMI/uml:Model//packagedElement[@xmi:type = 'uml:Class']
-
-//packagedElement[@xmi:type = 'uml:Class']
-
