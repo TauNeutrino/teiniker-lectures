@@ -206,6 +206,7 @@ public class UserDAOImpl
 		u.setUsername(username);
 		u.setPassword(password);		
 		insert(u);
+		// TODO: Read created id from database.
 		return u;
 	}
 }
