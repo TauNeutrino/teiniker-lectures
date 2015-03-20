@@ -1,9 +1,7 @@
 package org.se.lab;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.enterprise.inject.Alternative;
 
@@ -19,37 +17,42 @@ public class UserDAOAlternativeImpl
     /*
      * Simulate the database table in a HashMap
      */
-    private static Map<Integer,User> table = new HashMap<>();
+    private static List<User> table = new ArrayList<>();
     
     
     /*
      * DOA operations
      */
     
-    public void insert(User p)
+    public void insert(User user)
     {
-    	LOG.debug("insert(" + p + ")");
-        table.put(p.getId(), p);
+    	LOG.debug("insert(" + user + ")");
+        table.add(user);
     }
 
     public void update(User p)
     {
-        table.put(p.getId(), p);
+        // TODO
     }
 
     public void delete(long id)
     {
-        table.remove(id);
+        // TODO
     }
 
     public User findById(long id)
     {
     	LOG.debug("findById(" + id + ")");
-        return table.get(id);        
+        for( User u : table)
+        {
+        	if(u.getId() == id)
+        		return u;
+        }
+        return null;
     }
     
     public List<User> findAll()
     {
-        return new ArrayList<User>(table.values());
+        return table;
     }
 }

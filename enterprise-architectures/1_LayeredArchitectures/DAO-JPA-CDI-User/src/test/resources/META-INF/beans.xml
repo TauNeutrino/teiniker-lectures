@@ -4,6 +4,10 @@
         http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        bean-discovery-mode="all">
 
+	<interceptors>
+		<class>org.se.lab.MonitorInterceptor</class>
+	</interceptors>
+
 	<!-- 
 	<alternatives>
 		<class>org.se.lab.UserDAOAlternativeImpl</class>
@@ -13,10 +17,5 @@
 		<class>org.se.lab.UserDAODecorator</class>
 	</decorators>
 
-	<interceptors>
-		<class>org.se.lab.MonitorInterceptor</class>
-	</interceptors>
 	-->
-
-
 </beans>  
