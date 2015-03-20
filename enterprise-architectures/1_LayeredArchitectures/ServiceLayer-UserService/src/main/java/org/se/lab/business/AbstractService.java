@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-abstract class AbstractService
+abstract class AbstractService // package private
 {
 	private final Logger logger = Logger.getLogger(AbstractService.class);
 	

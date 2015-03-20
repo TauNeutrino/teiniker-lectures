@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-final class MD5Encoder
+final class MD5Encoder // package private
 {
     /*
      * Don't create an instance of this class.

@@ -9,7 +9,7 @@ import org.se.lab.data.User;
 import org.se.lab.data.UserDAO;
 
 
-public class UserServiceImpl 
+class UserServiceImpl // package private
 	extends AbstractService 
 	implements UserService
 {
