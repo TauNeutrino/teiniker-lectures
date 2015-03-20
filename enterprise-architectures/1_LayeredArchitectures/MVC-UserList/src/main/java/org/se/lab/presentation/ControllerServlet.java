@@ -23,7 +23,7 @@ public class ControllerServlet
 		throws IOException, ServletException
 	{
 		LOG.debug("POST " + request.getQueryString());
-		System.out.println("GET " + request.getQueryString());
+
 		response.setContentType("text/html");
 		
 		String action = request.getParameter("action");						
