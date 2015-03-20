@@ -2,7 +2,7 @@
  * We can use the GNU cpp to perform inline generation for Java source code too!
  * 
  * $ cd Generator-cpp
- * $ cpp -P -C templates/Main.java src-gen/org/se/lab/Main.java
+ * $ cpp -P -C src/main/resources/templates/Main.java src/main/java/org/se/lab/Main.java
  */
 
 package org.se.lab;
