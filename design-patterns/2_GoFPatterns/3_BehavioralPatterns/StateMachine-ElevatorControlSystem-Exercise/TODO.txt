@@ -5,6 +5,12 @@ Sie sollen ein einfaches Steuersystem für einen Lift, in Form einer
 StateMachine, implementieren. 
 Der Name der Klasse soll "ControllerSM" sein, das State Diagram ist gegeben.
 
+Als Eingabe-Elemente (Trigger) der Steuerung werden folgende Methoden verwendet:
+	pushUpButton()
+	endSwitchTop()
+	pushDownButton()
+	endSwitchBottom()
+
 Beachten Sie, dass es bereits eine Klasse "Motor" gibt, die von "ControllerSM"
 verwendet werden kann.
 
