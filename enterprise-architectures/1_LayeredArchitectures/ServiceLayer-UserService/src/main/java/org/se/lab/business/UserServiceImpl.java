@@ -68,7 +68,7 @@ class UserServiceImpl // package private
 		{
 			txRollback();
 			logger.error(e); // Log stack trace instead of passing it to the presentation
-			throw new ServiceException("Can't add user " + username, e);
+			throw new ServiceException("Can't add user " + username);
 		}
 		catch(Throwable e)
 		{
