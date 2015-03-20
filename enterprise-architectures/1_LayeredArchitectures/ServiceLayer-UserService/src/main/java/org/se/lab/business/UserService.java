@@ -6,8 +6,7 @@ import org.se.lab.data.User;
 
 public interface UserService
 {
-	void addUser(final String firstName, final String lastName,
-			final String username, final String password);
+	void addUser(String firstName, String lastName, String username, String password);
 
 	void removeUser(final String idString);
 

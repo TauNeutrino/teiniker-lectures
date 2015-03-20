@@ -67,14 +67,14 @@ public class UserServiceImpl
 		catch(DAOException e)
 		{
 			txRollback();
-			logger.error(e);
+			logger.error(e); // Log stack trace instead of passing it to the presentation
 			throw new ServiceException("Can't add user " + username, e);
 		}
 		catch(Throwable e)
 		{
 			txRollback();
-			logger.error(e);
-			throw new ServiceException("Unknown error during adding: " + username, e);			
+			logger.error(e); // Log stack trace instead of passing it to the presentation
+			throw new ServiceException("Unknown error during adding: " + username);			
 		}
 	}
 	
@@ -98,14 +98,14 @@ public class UserServiceImpl
         catch(DAOException e)
         {
             txRollback();
-            logger.error(e);
-            throw new ServiceException("Can't remove user with id = " + idString, e);
+            logger.error(e); // Log stack trace instead of passing it to the presentation
+            throw new ServiceException("Can't remove user with id = " + idString);
         }
 		catch(Throwable e)
 		{
 			txRollback();
-			logger.error(e);
-			throw new ServiceException("Unknown error during removing: " + idString, e);			
+			logger.error(e); // Log stack trace instead of passing it to the presentation
+			throw new ServiceException("Unknown error during removing: " + idString);			
 		}
 	}
 
@@ -124,14 +124,14 @@ public class UserServiceImpl
         catch(DAOException e)
         {
             txRollback();
-            logger.error(e);
-            throw new ServiceException("Can't find all user ", e);
+            logger.error(e); // Log stack trace instead of passing it to the presentation
+            throw new ServiceException("Can't find all user ");
         }
 		catch(Throwable e)
 		{
 			txRollback();
-			logger.error(e);
-			throw new ServiceException("Unknown error during finding all users: ", e);			
+			logger.error(e); // Log stack trace instead of passing it to the presentation
+			throw new ServiceException("Unknown error during finding all users: ");			
 		}
 		return users;
 	}

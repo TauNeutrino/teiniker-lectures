@@ -3,8 +3,11 @@ package org.se.lab.business;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 abstract class AbstractService
 {
+	private final Logger logger = Logger.getLogger(AbstractService.class);
 	
 	/*
 	 * Dependency: ---[1]-> connection:Connection
@@ -35,7 +38,8 @@ abstract class AbstractService
         } 
 		catch (SQLException e)
         {
-		    throw new ServiceException("transaction begin failure", e);
+			logger.error(e); // Log stack trace instead of passing it to the presentation
+		    throw new ServiceException("transaction begin failure");
         } 
 	}
 
@@ -48,7 +52,8 @@ abstract class AbstractService
         } 
 		catch (SQLException e)
         {
-		    throw new ServiceException("transaction commit failure", e);
+			logger.error(e); // Log stack trace instead of passing it to the presentation
+		    throw new ServiceException("transaction commit failure");
         }
 	}
 
@@ -60,7 +65,8 @@ abstract class AbstractService
         } 
 		catch (SQLException e)
         {
-            throw new ServiceException("transaction rollback failure", e);
+			logger.error(e); // Log stack trace instead of passing it to the presentation
+            throw new ServiceException("transaction rollback failure");
         }
 	}
 }
