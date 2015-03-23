@@ -1,0 +1,7 @@
+#
+# Tomcat Settings
+#
+
+tomcat.home=/home/student/install/apache-tomcat-7.0.30
+tomcat.deploy=${tomcat.home}/webapps
+
