@@ -1,0 +1,23 @@
+Sockets: HTTP Server + Client
+---------------------------------------------------------------------
+
+This example implements a simplified HTTP server (single-threaded) to
+show how the HTTP protocol works.
+
+
+How to Start the HTTP Server?
+---------------------------------------------------------------------
+
+$ java -cp ./build/ org.se.lab.HttpServer
+
+
+How to Access the HTTP Server from a Browser?
+---------------------------------------------------------------------
+
+URL: http://localhost:8080/index.html
+
+
+How to Access the HTTP Server from a JUnit Test?
+---------------------------------------------------------------------
+
+Run the HTTPClientTest.
