@@ -29,12 +29,16 @@ public abstract class AbstractHttpClientTest
 	{
 		// read connection settings
 		Properties properties = new Properties();
-		properties.load(this.getClass().getResourceAsStream(
-				"/org/se/lab/http.properties"));
+		properties.load(this.getClass().getResourceAsStream("/org/se/lab/http.properties"));
+		
 		HOST = properties.getProperty("http.host");
 		PORT = properties.getProperty("http.port");
 		logger.debug("Connect to " + HOST + ":" + PORT);
 
+		// read path to the used keystore file
+		System.setProperty( "javax.net.ssl.trustStore", properties.getProperty("ssl.trustStore"));
+		System.setProperty( "javax.net.ssl.trustStorePassword", properties.getProperty("ssl.trustStorePassword"));
+		
 		// configure proxy
 		String proxyAddress = properties.getProperty("http.proxy.address");
 		String proxyPort = properties.getProperty("http.proxy.port");
@@ -48,7 +52,6 @@ public abstract class AbstractHttpClientTest
 		{
 			PROXY = Proxy.NO_PROXY;
 		}
-
 	}
 
 	protected String httpsGetRequest(URL url)
