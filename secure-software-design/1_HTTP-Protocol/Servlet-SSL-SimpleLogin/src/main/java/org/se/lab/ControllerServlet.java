@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.istack.internal.logging.Logger;
+import org.apache.log4j.Logger;
+
 
 @WebServlet("/controller")
 public class ControllerServlet extends HttpServlet
 {
-	Logger logger = Logger.getLogger(ControllerServlet.class);
+	private final Logger LOG = Logger.getLogger(ControllerServlet.class);
 	
 	private static final long serialVersionUID = 1L;
 
@@ -24,15 +25,21 @@ public class ControllerServlet extends HttpServlet
 	}
 
 	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
+		HttpServletResponse response) throws ServletException, IOException
+	{
+		doPost(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request,
+		HttpServletResponse response) throws ServletException, IOException
 	{
 		// Handling request
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String usergroup = request.getParameter("usergroup");
-        String action = request.getParameter("action");
-        
-        logger.info("request: " + action + "," + username + "," + password + "," + usergroup);
+        String action = request.getParameter("action");        
+        LOG.info("request: " + action + "," + username + "," + password + "," + usergroup);
         
         String html = null;
         if(action != null && action.equals("Login"))
@@ -43,21 +50,13 @@ public class ControllerServlet extends HttpServlet
         {
         	html = ""; // TODO: generate error page
         }
-               
-        
+                       
         // Generate response
         response.setContentType("text/html");
         response.setBufferSize(1024);
         PrintWriter out = response.getWriter();
         out.println(html.toString());
         out.close();
-	}
-
-	
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-	{
-		doGet(request, response);
 	}
 
 	
