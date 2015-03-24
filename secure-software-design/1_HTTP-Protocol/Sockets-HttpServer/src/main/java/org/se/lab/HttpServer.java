@@ -13,13 +13,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
 
-/*
- * Start the HTTP server: $ java -cp ./build/ org.se.lab.HttpServer
- */
-
 public class HttpServer
 {
-	private final static String WEB_DIR = "./web";
+	private final static String WEB_DIR = "./src/main/webapp";
 	private final static int SERVER_PORT = 8080;  
 		
 	public static void main(String... ags)

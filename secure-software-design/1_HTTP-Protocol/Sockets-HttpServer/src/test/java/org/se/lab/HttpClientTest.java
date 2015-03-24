@@ -14,7 +14,6 @@ public class HttpClientTest
 	public void testPOSTRequest() throws UnknownHostException, IOException
 	{
 		Socket socket = new Socket("localhost", 8080);
-//		socket.setSoTimeout(5000);
 
 		// send request
 		PrintWriter out = new PrintWriter(socket.getOutputStream());		

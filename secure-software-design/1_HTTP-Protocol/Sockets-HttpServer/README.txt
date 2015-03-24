@@ -8,7 +8,7 @@ show how the HTTP protocol works.
 How to Start the HTTP Server?
 ---------------------------------------------------------------------
 
-$ java -cp ./build/ org.se.lab.HttpServer
+$ java -cp target/classes/ org.se.lab.HttpServer
 
 
 How to Access the HTTP Server from a Browser?
