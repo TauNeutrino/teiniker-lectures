@@ -6,7 +6,7 @@ should be extended to handle more clients at the same time.
 
 Start the server on the command line:
 
-	$ java -cp ./build org.se.lab.HttpServerSingleThreaded
+	$ java -cp ./target/classes org.se.lab.HttpServerSingleThreaded
 
 Execute the test class "HttpClientTest" to send a client request.
 
@@ -18,7 +18,7 @@ a new thread for every client request.
 Print out the current thread ID to monitor the number of used threads.
 
 Run the server with:  
-	$ java -cp ./build org.se.lab.HttpServerThreadPerRequest
+	$ java -cp ./target/classes org.se.lab.HttpServerThreadPerRequest
 	
 and use the same test class to simulate client requests.
 
@@ -30,7 +30,7 @@ framework to create a fix sized thread pool with 10 threads.
 Print out the current thread ID to monitor the number of used threads.
  
 Run the server with: 
-	$ java -cp ./build org.se.lab.HttpServerThreadPool
+	$ java -cp ./target/classes org.se.lab.HttpServerThreadPool
 	
 and use the same test class to simulate client requests.
  

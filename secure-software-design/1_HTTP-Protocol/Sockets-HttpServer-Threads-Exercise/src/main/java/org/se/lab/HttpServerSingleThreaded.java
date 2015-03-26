@@ -19,7 +19,7 @@ public class HttpServerSingleThreaded
 			{
 				Socket connection = server.accept(); // wait for a connection
 
-				HttpRequestHandler handler = new HttpRequestHandler("web");
+				HttpRequestHandler handler = new HttpRequestHandler("src/main/webapp");
 				handler.handleRequest(connection);
 				connection.close();
 			}
