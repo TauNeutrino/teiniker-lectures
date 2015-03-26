@@ -16,11 +16,12 @@ public class EntityBuilderTest
 	@Before
 	public void setup()
 	{
-		entity = new EntityBuilder().name("User")
+		entity = new EntityBuilder()
+			.name("User")
 			   .property("id").asInt().isId()
 			   .property("username").asString()
 			   .property("password").asString()
-			   .toEntity();
+			.toEntity();
 	}
 
 	
