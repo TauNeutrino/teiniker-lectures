@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class HttpServerSingleThreaded
+public class HttpServerThreadPerRequest
 {	
 	public static void main(String... ags)
 	{
@@ -14,14 +14,21 @@ public class HttpServerSingleThreaded
 			server = new ServerSocket(8080);
 			Logger.log("Server started...");
 			Logger.log(server.toString());
-			
+
 			while (true)
 			{
-				Socket connection = server.accept(); // wait for a connection
+				final Socket connection = server.accept(); // wait for a connection
 
-				HttpRequestHandler handler = new HttpRequestHandler("web");
-				handler.handleRequest(connection);
-				connection.close();
+				Runnable task = new Runnable()
+				{
+					public void run()
+					{						
+						HttpRequestHandler handler = new HttpRequestHandler("src/main/webapp");
+						handler.handleRequest(connection);						
+					}
+				};
+				Thread t = new Thread(task);
+				t.start();
 			}
 		} 
 		catch(IOException e)
@@ -40,7 +47,7 @@ public class HttpServerSingleThreaded
 				{
 					e.printStackTrace();
 				}
-			}
+			}	
 		}
 	}
 }

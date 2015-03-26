@@ -28,7 +28,7 @@ public class HttpServerThreadPool
 				{
 					public void run()
 					{						
-						HttpRequestHandler handler = new HttpRequestHandler("web");
+						HttpRequestHandler handler = new HttpRequestHandler("src/main/webapp");
 						handler.handleRequest(connection);						
 					}
 				};
