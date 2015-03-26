@@ -72,6 +72,7 @@ public class EntityValidatorTest
     	try
     	{
 			validator.visit(entity);
+			Assert.fail();
     	}
     	catch(IllegalStateException e)
     	{
@@ -88,6 +89,7 @@ public class EntityValidatorTest
     	try
     	{
 			validator.visit(entity);
+			Assert.fail();
     	}
     	catch(IllegalStateException e)
     	{
