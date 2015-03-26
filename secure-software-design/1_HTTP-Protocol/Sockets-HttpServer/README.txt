@@ -21,3 +21,14 @@ How to Access the HTTP Server from a JUnit Test?
 ---------------------------------------------------------------------
 
 Run the HTTPClientTest.
+
+
+How to Access the HTTP Server from a Bash?
+---------------------------------------------------------------------
+
+$ curl -i -s -X GET http://localhost:8080/index.html    
+    
+    
+    
+    
+    
