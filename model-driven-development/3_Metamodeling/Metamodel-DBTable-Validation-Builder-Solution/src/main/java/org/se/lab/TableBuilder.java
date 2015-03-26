@@ -19,7 +19,10 @@ public class TableBuilder
 		MTable table = new MTable(name);
 		for(ColumnBuilder c : columns)
 		{
-			table.getColumns().add(c.toColumn());
+			// table.getColumns().add(c.toColumn());
+			MColumn col = c.toColumn();
+			List<MColumn> list = table.getColumns();
+			list.add(col);
 		}
 		return table;
 	}
