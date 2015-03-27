@@ -8,6 +8,34 @@ How to access the Web application from a browser?
 URL: http://localhost:8080/Servlet-Filter-Log/
 
 
+How to configure Wildfly to support Common Logging Format?
+-------------------------------------------------------------------------------
+standalone.xml:
+
+ <subsystem xmlns="urn:jboss:domain:undertow:1.2">
+            <buffer-cache name="default"/>
+            <server name="default-server">
+                <http-listener name="default" socket-binding="http"/>
+                <https-listener name="https" socket-binding="https" security-realm="CertificateRealm"/>
+                <host name="default-host" alias="localhost">
+                    <location name="/" handler="welcome-content"/>
+                    <filter-ref name="server-header"/>
+                    <filter-ref name="x-powered-by-header"/>
+                    <access-log pattern="common" directory="${jboss.home.dir}/standalone/log" prefix="access" />    !!!!!
+                </host>
+            </server>
+            <servlet-container name="default">
+                <jsp-config/>
+                <websockets/>
+            </servlet-container>
+            <handlers>
+                <file name="welcome-content" path="${jboss.home.dir}/welcome-content"/>
+            </handlers>
+            <filters>
+                <response-header name="server-header" header-name="Server" header-value="WildFly/8"/>
+                <response-header name="x-powered-by-header" header-name="X-Powered-By" header-value="Undertow/1"/>
+            </filters>
+        </subsystem>
 
 How to run Wildfly and deploy the Web application?
 -------------------------------------------------------------------------------
