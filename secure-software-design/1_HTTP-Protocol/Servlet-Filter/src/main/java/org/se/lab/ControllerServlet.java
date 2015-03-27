@@ -9,11 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 @WebServlet("/login.html")
 public class ControllerServlet extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
-       
+	private final Logger LOG = Logger.getLogger(ControllerServlet.class);
+	
 	public ControllerServlet()
 	{
 		super();
@@ -22,6 +25,8 @@ public class ControllerServlet extends HttpServlet
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException
 	{
+		LOG.debug("GET " + request.getQueryString());
+		
         response.setContentType("text/html");
         response.setBufferSize(1024);
         
@@ -54,6 +59,7 @@ public class ControllerServlet extends HttpServlet
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException
 	{
+		LOG.debug("POST " + request.getQueryString());
 		doGet(request, response);
 	}
 }

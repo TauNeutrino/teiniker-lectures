@@ -12,32 +12,38 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 @WebFilter("/login.html")
 public class ResponseFilter implements Filter
 {
+	private final Logger LOG = Logger.getLogger(ResponseFilter.class);
+	
 	/*
 	 * Lifecycle methods
 	 */
 	
 	public ResponseFilter()
 	{
-		System.out.println("ResponseFilter()");
+		LOG.debug("ResponseFilter()");
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException
 	{
-		System.out.println("ResponseFilter.init()");
+		LOG.debug("ResponseFilter.init()");
 	}
 
 	public void destroy()
 	{
-		System.out.println("ResponseFilter.destroy()");
+		LOG.debug("ResponseFilter.destroy()");
 	}
 
 	
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException
 	{
+		LOG.debug("doFilter()");
+		
 		if(response instanceof HttpServletResponse)
 		{
 			ResponseWrapper wrapper = new ResponseWrapper((HttpServletResponse)response);
@@ -45,10 +51,10 @@ public class ResponseFilter implements Filter
 			
 			String content = wrapper.toString();
 			
-			System.out.println("---------------------------------------------------");
-			System.out.println("Response Filter");
-	        System.out.println("---------------------------------------------------");
-			System.out.println(content);
+			LOG.info("---------------------------------------------------");
+			LOG.info("Response Filter");
+			LOG.info("---------------------------------------------------");
+			LOG.info(content);
 			
 	        PrintWriter out = response.getWriter();
 	        out.println(content);
