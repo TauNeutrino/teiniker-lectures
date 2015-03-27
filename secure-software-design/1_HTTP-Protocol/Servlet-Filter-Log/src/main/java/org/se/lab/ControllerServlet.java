@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.istack.internal.logging.Logger;
+import org.apache.log4j.Logger;
 
 @WebServlet("/controller")
 public class ControllerServlet extends HttpServlet
 {
-	Logger logger = Logger.getLogger(ControllerServlet.class);
+	private final Logger LOG = Logger.getLogger(ControllerServlet.class);
 	
 	private static final long serialVersionUID = 1L;
 
@@ -23,9 +23,11 @@ public class ControllerServlet extends HttpServlet
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+		throws ServletException, IOException
 	{
+		LOG.debug("GET " + request.getQueryString());
+		
 		// Handling request
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -52,9 +54,11 @@ public class ControllerServlet extends HttpServlet
 	}
 
 	
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+		throws ServletException, IOException
 	{
+		LOG.debug("POST " + request.getQueryString());
+		
 		doGet(request, response);
 	}
 
@@ -65,6 +69,8 @@ public class ControllerServlet extends HttpServlet
 	
 	protected String handleLogin(String username, String password, String usergroup)
 	{
+		LOG.debug("handleLogin(" + username + ", " + usergroup + ")");
+		
 		LoginService service = new LoginServiceImpl();
 		LoginViewHelper helper = new LoginViewHelper();
 		

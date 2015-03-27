@@ -15,6 +15,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 /*  
  * The Common Logfile Format
  * 
@@ -32,18 +34,24 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter("/*")
 public class LogFilter implements Filter 
 {
+	private final Logger LOG = Logger.getLogger(LogFilter.class);
+	
 	public void init(FilterConfig fConfig) throws ServletException 
 	{
+		LOG.debug("init()");
 	}
 
 	public void destroy()
 	{
+		LOG.debug("destroy()");
 	}
 
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
 		throws IOException, ServletException 
 	{
+		LOG.debug("doFilter()");
+		
 		HttpServletRequest in = (HttpServletRequest)request;
 		
 		PrintWriter writer = response.getWriter();
@@ -73,8 +81,8 @@ public class LogFilter implements Filter
 		HttpServletResponse out = (HttpServletResponse)response;
 		log.append(out.getStatus()).append(" ");
 		log.append(wrapper.toString().length());		
-		System.out.println(log.toString());
-		
+
+		LOG.info(log.toString());
 		
         writer.println(wrapper.toString());
         writer.close();
