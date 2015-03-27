@@ -8,7 +8,7 @@ import org.se.lab.metamodel.MType;
 
 
 public class IdentifierValidator
-	extends AbstratcValidator
+	extends AbstractValidator
 {
 	public void visit(MPackage pkg)
 	{

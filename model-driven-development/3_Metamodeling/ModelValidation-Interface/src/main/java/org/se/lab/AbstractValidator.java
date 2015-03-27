@@ -6,7 +6,7 @@ import org.se.lab.metamodel.MPackage;
 import org.se.lab.metamodel.MParameter;
 import org.se.lab.metamodel.MType;
 
-public abstract class AbstratcValidator
+public abstract class AbstractValidator
 	implements InterfaceVisitor
 {
 	@Override
