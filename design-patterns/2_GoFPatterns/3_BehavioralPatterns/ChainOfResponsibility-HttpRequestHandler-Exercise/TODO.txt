@@ -1,0 +1,17 @@
+TODO: Chain of Responsibility - Http Request Handler
+---------------------------------------------------------------------
+
+Implementieren Sie die folgenden Klassen um eine Chain of Responsibility
+für HTTP Requests aufbauen zu können:
+
+a) AddRequestHandler
+
+b) DeleteRequestHandler
+
+c) UnknownActionRequestHandler
+
+
+Tipp: Vergessen Sie nicht auf die abstrakte Basisklasse "HttpRequestHandler"!
+
+
+Überprüfen Sie ihre Implementierung mit der Klasse "HttpRequestHandlerTest".
