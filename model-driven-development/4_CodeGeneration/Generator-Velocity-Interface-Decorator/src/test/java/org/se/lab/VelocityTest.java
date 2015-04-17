@@ -1,9 +1,10 @@
 package org.se.lab;
 
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 
 import org.apache.velocity.Template;
@@ -18,6 +19,7 @@ public class VelocityTest
 	private MPackage pkg;
 	private VelocityContext context;
 	private static final String OUTPUT_FOLDER = "src/generated/java/org/se/lab/";
+	private static final String TEMPLATE_FOLDER = "src/main/resources/templates/";
 	
 	@Before
 	public void setup()
@@ -39,19 +41,17 @@ public class VelocityTest
         // TODO: Mehrere Interfaces möglich - hier oder im Template über die Liste iterieren
         context.put("iface", pkg.getInterfaces().get(0));
 	}
+
 	
 	@Test
 	public void testInterfaceVelocity()
 	{
-        Template template = Velocity.getTemplate("templates/InterfaceTemplate.vm");
+        Template template = Velocity.getTemplate(TEMPLATE_FOLDER + "InterfaceTemplate.vm");
         StringWriter sw = new StringWriter();
         template.merge(context, sw);
         
         // Write to file
-        writeToFile(OUTPUT_FOLDER + "Stack.java", sw);
-        
-        //write to sysout
-        System.out.println(sw);
+        writeToFile("Stack.java", sw.toString());
 	}
 
 	
@@ -61,14 +61,12 @@ public class VelocityTest
 		context.put("ifaceNameLower", pkg.getInterfaces().get(0).getName().substring(0, 1).toLowerCase() + 
 			pkg.getInterfaces().get(0).getName().substring(1));
 		
-		Template template = Velocity.getTemplate("templates/AbstractDecoratorTemplate.vm");
+		Template template = Velocity.getTemplate(TEMPLATE_FOLDER + "AbstractDecoratorTemplate.vm");
         StringWriter sw = new StringWriter();
         template.merge(context, sw);
 
         // Write to file
-        writeToFile(OUTPUT_FOLDER + "AbstractStackDecorator.java", sw);
-        
-        System.out.println(sw);
+        writeToFile("AbstractStackDecorator.java", sw.toString());
 	}
 
 	
@@ -78,37 +76,26 @@ public class VelocityTest
 		context.put("ifaceNameLower", pkg.getInterfaces().get(0).getName().substring(0, 1).toLowerCase() + 
 				pkg.getInterfaces().get(0).getName().substring(1));
 		
-		Template template = Velocity.getTemplate("templates/MonitorDecoratorTemplate.vm");
+		Template template = Velocity.getTemplate(TEMPLATE_FOLDER + "MonitorDecoratorTemplate.vm");
         StringWriter sw = new StringWriter();
         template.merge(context, sw);
         
-        
         // Write to file
-        writeToFile(OUTPUT_FOLDER + "StackMonitorDecorator.java", sw);
-        
-        System.out.println(sw);
+        writeToFile("StackMonitorDecorator.java", sw.toString());
 	}
+
 	
-	public void writeToFile(String path, StringWriter data)
+	public void writeToFile(String filename, String code)
 	{
-		File file = new File(path);
+		File file = new File(OUTPUT_FOLDER, filename);
 		
-		try
+		try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)))) 
 		{
-			FileOutputStream fop = new FileOutputStream(file);
-			fop.write(data.toString().getBytes());
-			fop.close();
-		}
-		catch (FileNotFoundException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			bw.write(code);
 		}
 		catch (IOException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new IllegalStateException(e);
 		}
-	}
-	
+	}	
 }
