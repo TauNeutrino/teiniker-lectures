@@ -39,10 +39,6 @@ public class MethodNameValidator
 	
 	private void checkUpperCase(Object o, String name)
 	{
-		// check if the name valid regarding length
-		if(name== null || name.trim().length() == 0)
-			throw new IllegalStateException("Invalid identifier " + name + " at " + o.getClass().getTypeName());
-		
 		// check if the name is invalid regarding upper/lower case
 		if ( Character.isUpperCase( name.charAt(0) ) == true )
 		{
