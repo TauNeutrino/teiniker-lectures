@@ -14,7 +14,7 @@ package $pkgName;
 #if($iface.public)
 public interface $ifaceName 
 #else
-private Interface $ifaceName 
+interface $ifaceName 
 #end
 {
 ## Loop over Interface Methods
