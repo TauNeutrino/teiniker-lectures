@@ -7,6 +7,9 @@ How to access the Web application from a browser?
 
 URL: http://localhost:8080/Servlet-Filter-Log/
 
+127.0.0.1 - - 17/Apr/2015:08:48:57 +0200 "GET /Servlet-Filter-Log/controller?username=student&password=student&action=Login HTTP/1.1" 200 127
+
+
 
 How to configure Wildfly to support Common Logging Format?
 -------------------------------------------------------------------------------
@@ -36,6 +39,7 @@ standalone.xml:
                 <response-header name="x-powered-by-header" header-name="X-Powered-By" header-value="Undertow/1"/>
             </filters>
         </subsystem>
+
 
 How to run Wildfly and deploy the Web application?
 -------------------------------------------------------------------------------
