@@ -1,10 +1,29 @@
-Setup
+Servlet: Client-Side Controls
 ---------------------------------------------------------------------
-a) Deploy this Web application to Tomcat
-b) Run BurpSuite
-c) Configure the browser to use the proxy
-d) Use the browser to access the page 
-	http://localhost:8080/Servlet-ClientSideControls/controller
+
+How to run Wildfly and deploy the Web application?
+-------------------------------------------------------------------------------
+
+$ mvn wildfly:run
+
+Make sure that you have configured the wildfly-maven-plugin:
+
+	<configuration>
+		<jbossHome>/home/student/install/wildfly-8.2.0.Final</jbossHome>
+		<port>9990</port>
+		<server-config>standalone.xml</server-config>
+	</configuration> 
+		
+		
+How to setup the client-side?
+---------------------------------------------------------------------
+o) Run BurpSuite
+
+o) Configure the browser to use the proxy
+
+o) Use the browser to access the page:
+	
+	URL: http://localhost:8080/Servlet-ClientSideControls/controller
 
 
 1. Hidden Form Fields

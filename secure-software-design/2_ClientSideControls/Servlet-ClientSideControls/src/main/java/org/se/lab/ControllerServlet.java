@@ -10,11 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.codec.binary.Base64;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.log4j.Logger;
 
 @WebServlet("/controller")
 public class ControllerServlet extends HttpServlet
 {
+	private final Logger LOG = Logger.getLogger(ControllerServlet.class);
+	
 	private static final long serialVersionUID = 1L;
 
 	public ControllerServlet()
@@ -33,6 +36,8 @@ public class ControllerServlet extends HttpServlet
         String password = request.getParameter("password");
         String action = request.getParameter("action");
         
+        LOG.debug("POST: process " + action + " as " + role);
+
         // Handling request cookies
         String debug = "";
         Cookie[] cookies = request.getCookies();
@@ -48,11 +53,12 @@ public class ControllerServlet extends HttpServlet
         String html = null;
         if(action != null && action.equals("Add"))
         {
-        	if(debug.equals("dHJ1ZQ=="))
+        	String debugFlag = new String(Base64.decodeBase64(debug));
+        	if(debugFlag.equals("true"))
         	{
-        		System.out.println("Add: " 
-        					+ firstName + "," + lastName + ","  
-        					+ username + "," + password + "," + role);
+        		LOG.debug("Add: " 
+    					+ firstName + "," + lastName + ","  
+    					+ username + "," + password + "," + role);
         	}
         	
         	// TODO: implement some action
