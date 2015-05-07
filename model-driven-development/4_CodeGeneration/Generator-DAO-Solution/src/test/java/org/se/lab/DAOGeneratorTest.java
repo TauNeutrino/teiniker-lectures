@@ -10,7 +10,7 @@ import org.se.lab.metamodel.MString;
 public class DAOGeneratorTest
 {
 	private static final String PACKAGE_NAME = "org.se.lab";
-	private static final String GEN_CODE_FOLDER = "src/main/generated/org/se/lab/";
+	private static final String GEN_CODE_FOLDER = "src/generated/java/org/se/lab/";
     private MEntity entity;
     
     @Before
