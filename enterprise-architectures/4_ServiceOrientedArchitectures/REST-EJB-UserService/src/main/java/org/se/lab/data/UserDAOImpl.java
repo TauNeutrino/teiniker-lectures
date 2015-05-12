@@ -2,12 +2,10 @@ package org.se.lab.data;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-@Stateless
-public class UserDAOImpl
+class UserDAOImpl // package private
 	implements UserDAO
 {
 	@PersistenceContext
