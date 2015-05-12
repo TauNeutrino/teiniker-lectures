@@ -12,7 +12,7 @@ import org.junit.Test;
 public class UserServiceJSONTest 
 	extends AbstractTestBase
 {
-	private final String WEB_APP_NAME = "/REST-EJB-UserService/v1";
+	private final String WEB_APP_NAME = "/REST-UserService/v1";
 	
 	
 	@Test
