@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 @WebServlet("/controller")
 public class ControllerServlet extends HttpServlet
 {
-	Logger logger = Logger.getLogger(ControllerServlet.class);
+	private final Logger LOG = Logger.getLogger(ControllerServlet.class);
 	
 	private static final long serialVersionUID = 1L;
 
@@ -39,7 +39,7 @@ public class ControllerServlet extends HttpServlet
         String password = request.getParameter("password");
         String usergroup = request.getParameter("usergroup");
         String action = request.getParameter("action");        
-        logger.info("request: " + action + "," + username + "," + password + "," + usergroup);
+        LOG.info("request: " + action + "," + username + "," + password + "," + usergroup);
         
         String html = null;
         if(action != null && action.equals("Login"))

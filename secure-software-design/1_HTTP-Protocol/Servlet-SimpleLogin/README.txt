@@ -26,4 +26,20 @@ URL: http://localhost:8080/Servlet-SimpleLogin/
 How to access the Web application from cURL?
 -------------------------------------------------------------------------------
 
-$ curl --proxy localhost:8010 -i -X POST -H 'Content-Type: application/x-www-form-urlencoded' --data-binary $'username=student&password=student&usergroup=Guest&action=Login' http://localhost:8080/Servlet-SimpleLogin/controller		
+$ curl --proxy localhost:8010 -i -X POST -H 'Content-Type: application/x-www-form-urlencoded' --data-binary $'username=student&password=student&usergroup=Guest&action=Login' http://localhost:8080/Servlet-SimpleLogin/controller
+
+
+
+curl -i -X GET http://localhost:8080/Servlet-SimpleLogin/
+
+curl -i -X GET "http://localhost:8080/Servlet-SimpleLogin/controller?username=student&password=student&usergroup=Guest&action=Login"
+
+
+curl -i -X GET "http://localhost:8080/Servlet-SimpleLogin/controller?username=student&password=student&usergroup=Guest&action=Login"
+    
+    
+		
+		
+		
+		
+		
