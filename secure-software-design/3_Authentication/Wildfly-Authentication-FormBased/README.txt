@@ -1,6 +1,13 @@
 Wildfly: Form-Based Authentication (ApplicationRealm) 
 ===============================================================================
 
+The Java EE security model is declarative. The term declarative here means
+that you describe the security roles and permissions in a standard XML descriptor.
+
+The default implementation of the declarative security model is based on Java
+Authentication and Authorization Service (JAAS) login modules ans subjects.
+
+
 How to Generate ApplicationRealm Credentials for Wildfly AS?
 -------------------------------------------------------------------------------
 
