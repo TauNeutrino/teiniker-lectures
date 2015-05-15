@@ -27,27 +27,27 @@ import org.junit.Test;
 public class BruteForceTest
 {
 	@Test
-	public void testCalculateMd5String() throws NoSuchAlgorithmException, UnsupportedEncodingException
+	public void testCalculateHashValue() throws NoSuchAlgorithmException, UnsupportedEncodingException
 	{
 		final String passwd = "student";
 	
-		String hash = calculateMd5String(passwd);
-		Assert.assertEquals("cd73502828457d15655bbd7a63fb0bc8", hash);
+		String hash = calculateHashString(passwd);
+		Assert.assertEquals("32ade5e7c36fa329ea39dbc352743db40da5aa7460ec55f95b999d6371ad20170094d88d9296643f192e9d5433b8d6d817d6777632e556e96e58f741dc5b3550", hash);
 	}
 
 	
 	@Test
-	public void testMd5Attack() throws NoSuchAlgorithmException, IOException
+	public void testPasswordBruteForceAttack() throws NoSuchAlgorithmException, IOException
 	{
-		final String md5 = "54a8723466e5d487247f3d93d51c66bc";
+		final String hashValue = "bb3340cfb96337e142cdd810678c0207be932bd8e6cd2890fbff2304491258efb07e6a51738ffd57dada2475b45f65650a5a2e2132a491766c8d7d7c67a9c85b";
 		final String filename = "wordlist.txt";
 			
 		BufferedReader in = new BufferedReader(new FileReader(filename));			
 		String line;	
 		while((line = in.readLine()) != null)
 		{
-			String hash = calculateMd5String(line);
-			if(hash.equals(md5))
+			String hash = calculateHashString(line);
+			if(hash.equals(hashValue))
 			{
 				System.out.println("Success, password is: " + line);
 				break;
@@ -61,10 +61,10 @@ public class BruteForceTest
 	 * Helper methods
 	 */
 	
-	private String calculateMd5String(final String message)
+	private String calculateHashString(final String message)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException
 	{
-		MessageDigest algorithm = MessageDigest.getInstance("MD5");		
+		MessageDigest algorithm = MessageDigest.getInstance("SHA-512");		
 		algorithm.update(message.getBytes("UTF-8"));
 		byte[] bytes = algorithm.digest();
 		return convertToHexString(bytes);
