@@ -17,13 +17,13 @@ request to that domain.
 ---------------------------------------------------------------------
 Note that every client connecting to this Servlet can change its value.
 
-http://localhost:8080/Servlet-Session/counter.html?action=Increment
+URL: http://localhost:8080/Servlet-SessionManagement/counter.html?action=Increment
 
 
 2. SessionServlet
 ---------------------------------------------------------------------
 
-URL: http://localhost:8080/Servlet-Session/session.html
+URL: http://localhost:8080/Servlet-SessionManagement/session.html
 
 The Servlet container creates an HttpServletRequest object and passes it 
 as an argument to the servlet's service methods (doGet, doPost, etc). 
