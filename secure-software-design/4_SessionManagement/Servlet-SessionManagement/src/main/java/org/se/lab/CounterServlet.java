@@ -60,7 +60,7 @@ public class CounterServlet extends HttpServlet
         s.append("  <body>\n");
         s.append("      <h1>Counter = ").append(counter.get()).append(" </h1>\n");
         
-        s.append("		<form method=\"get\" action=\"/Servlet-Session/counter.html\" >");
+        s.append("		<form method=\"get\" action=\"counter.html\" >");
 		s.append("			<table border=\"0\" cellspacing=\"1\" cellpadding=\"5\">");
 		s.append("				<colgroup>");
 		s.append("					<col width=\"150\"> <col width=\"150\"> <col width=\"150\">");

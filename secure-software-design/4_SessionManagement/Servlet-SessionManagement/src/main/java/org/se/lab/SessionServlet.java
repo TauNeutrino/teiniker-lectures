@@ -99,7 +99,7 @@ public class SessionServlet extends HttpServlet
         
         s.append("<hr/>");
         
-        s.append("		<form method=\"get\" action=\"/Servlet-Session/session.html\" >");
+        s.append("		<form method=\"get\" action=\"session.html\" >");
 		s.append("			<table border=\"0\" cellspacing=\"1\" cellpadding=\"5\">");
 		s.append("				<colgroup>");
 		s.append("					<col width=\"150\"> <col width=\"150\"> <col width=\"150\">");
