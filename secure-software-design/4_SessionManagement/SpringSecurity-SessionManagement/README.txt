@@ -97,7 +97,52 @@ To create password hash values we use a simple JUnit test:
 		System.out.println(hashedPassword);
 	}
 	
+
+How to create your own login page?
+-------------------------------------------------------------------------------
+Change or add the following configurations to the spring-security.xml
+
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/login.html*" access="isAnonymous()"/>
+		<intercept-url pattern="/**" access="hasRole('USER')" requires-channel="https"/>
+		<form-login login-page="/login.html" />
+		<logout logout-success-url="/index.html"/>
+		<csrf disabled="true"/>
+		
+		<port-mappings>
+      		<port-mapping http="8080" https="8443"/>
+    	</port-mappings>
+	</http>
 	
+Also we need a login.html page:
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Page</title>
+</head>
+<body onload='document.f.username.focus();'>
+	<h3>Please login with Username and Password</h3>
+	<form action="login" method="POST">
+		<table>
+			<tr>
+				<td>User:</td>
+				<td><input type='text' name='username' value=''></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type='password' name='password' /></td>
+			</tr>
+			<tr>
+				<td colspan='2'><input name="submit" type="submit"
+					value="Login" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
+
+
 	
 		
 How to run Wildfly and deploy the Web application?
