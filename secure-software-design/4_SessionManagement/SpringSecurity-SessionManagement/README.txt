@@ -16,6 +16,8 @@ Analyze the HTTP headers used in the request response transactions.
 Authorization: Basic c3R1ZGVudDpzdHVkZW50
 decode base64 => student:student
 
+Note that there is no explicit logout (except to close the browser). 
+
 
 How to add HTTPS support?
 -------------------------------------------------------------------------------
