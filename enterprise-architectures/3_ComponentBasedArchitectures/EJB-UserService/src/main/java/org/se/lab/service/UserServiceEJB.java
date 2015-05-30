@@ -42,11 +42,11 @@ public class UserServiceEJB
 		// TODO
 	}
 	
-	
+	// Container managed transaction
 	public List<UserDTO> findAllUsers()
 	{
 		LOG.debug("findAllUsers()");
-		
+		// TODO: Exception handling
 		List<User> list = dao.findAll();
 		List<UserDTO> result = UserDTO.toUserDTOList(list);
 		return result;
