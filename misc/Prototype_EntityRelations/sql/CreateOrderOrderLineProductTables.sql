@@ -1,0 +1,26 @@
+CREATE TABLE product 
+(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	description VARCHAR(64) NOT NULL,
+	price long NOT NULL
+) ENGINE = INNODB;
+
+
+CREATE TABLE order_line 
+(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	quantity INT NOT NULL,
+	product_id INT NOT NULL,
+	FOREIGN KEY (product_id) REFERENCES product(id)
+) ENGINE = INNODB;
+
+
+CREATE TABLE orders
+(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(64) NOT NULL,
+	line_id INT NOT NULL,
+	FOREIGN KEY (line_id) REFERENCES order_line(id)
+) ENGINE = INNODB;
+
+	
