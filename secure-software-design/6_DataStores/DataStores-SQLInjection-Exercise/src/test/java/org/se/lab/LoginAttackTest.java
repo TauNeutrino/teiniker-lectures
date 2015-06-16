@@ -57,4 +57,15 @@ public class LoginAttackTest
         boolean result = service.login(getConnection(), username, password);
         Assert.assertFalse(result);
     }
+
+    @Test
+    public void testSqlInjectionAttack3() throws SQLException, ClassNotFoundException
+    {
+        final String username = "' OR 1 #"; // SQL injection
+        final String password = "blah";
+        
+        LoginService service = new LoginService();
+        boolean result = service.login(getConnection(), username, password);
+        Assert.assertFalse(result);
+    }
 }

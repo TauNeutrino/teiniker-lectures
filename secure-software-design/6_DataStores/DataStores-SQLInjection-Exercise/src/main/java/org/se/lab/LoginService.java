@@ -5,26 +5,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.log4j.Logger;
+
 public class LoginService
 {
+	private final static Logger LOG = Logger.getLogger(LoginService.class);
+	
     public boolean login(Connection c, String username, String password)
-    	throws SQLException
     {
         final String SQL 
         		= "SELECT id FROM User WHERE username ='" 
                 + username
                 + "' AND password = '" 
                 + password + "'";
-        System.out.println("SQL> " + SQL);
+        LOG.info("SQL> " + SQL);
 
         Statement stmt = null;
         ResultSet rs = null;
-        boolean result = false;
         try
         {
             stmt = c.createStatement();
             rs = stmt.executeQuery(SQL);
-            result = rs.next();
+            return rs.next();
         } 
         catch (SQLException e)
         {
@@ -32,11 +34,17 @@ public class LoginService
         } 
         finally
         {
-            if (rs != null)
-                rs.close();
-            if (stmt != null)
-                stmt.close();
+        	try
+        	{
+        		if (rs != null)
+        			rs.close();
+        		if (stmt != null)
+        			stmt.close();
+        	}
+        	catch(SQLException e)
+        	{
+        		return false;
+        	}
         }
-        return result;
     }
 }
