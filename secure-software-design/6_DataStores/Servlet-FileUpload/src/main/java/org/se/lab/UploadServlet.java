@@ -27,8 +27,8 @@ public class UploadServlet extends HttpServlet
 	public void init()
 	{
 		// Get the file location where it would be stored.
-//		filePath = getServletContext().getInitParameter("file-upload");
-		filePath = getServletContext().getRealPath("/"); //!!! Don't do that
+		filePath = getServletContext().getInitParameter("file-upload");
+//		filePath = getServletContext().getRealPath("/"); //!!! Don't do that
 		LOG.info("Save files to: " + filePath);
 	}
 
@@ -90,7 +90,7 @@ public class UploadServlet extends HttpServlet
 					out.println("size in bytes = " + sizeInBytes + "<br>");
 
 					// Write the file
-					file = new File(filePath, fileName);
+					file = new File(filePath, fileName);  // !!! validate parameter fileName
 					item.write(file);
 					out.println("File saved to    : " + file.getAbsolutePath() + "<br>");
 				} 
