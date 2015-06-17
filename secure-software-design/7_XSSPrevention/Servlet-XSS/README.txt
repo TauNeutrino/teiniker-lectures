@@ -4,7 +4,6 @@ Reflected Cross-Site Scripting
 Browser: https://localhost:8443/Servlet-XSS/index.html
 		 
 
-
 How to attack an input field?
 ---------------------------------------------------------------------
 
