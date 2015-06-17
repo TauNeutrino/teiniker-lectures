@@ -1,8 +1,8 @@
 Reflected Cross-Site Scripting
 ---------------------------------------------------------------------
 
-Browser: http://localhost:8080/Servlet-XSS/index.html
-
+Browser: https://localhost:8443/Servlet-XSS/index.html
+		 
 
 
 How to attack an input field?
