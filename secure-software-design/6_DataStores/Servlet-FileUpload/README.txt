@@ -14,6 +14,12 @@ You can access the Web application from your browser:
 
 URL: http://localhost:8080/Servlet-FileUpload
 	
+Make sure that you have a /home/student/tmp folder!!!
+$ pwd
+/home/student
+$ mkdir tmp
+
+ 	
 	
 Demo: Upload a file
 -------------------------------------------------------------------------------
