@@ -4,7 +4,8 @@ import java.io.IOException;
 
 public class Main
 {
-	/*
+	/* Run the application as root:
+	 * 
 	 * $ su
 	 * root66
 	 * 
