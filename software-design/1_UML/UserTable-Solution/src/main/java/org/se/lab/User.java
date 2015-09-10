@@ -6,7 +6,7 @@ import java.util.List;
 public class User
 {
 	/*
-	 * Constructor
+	 * This is the Constructor
 	 */
 	public User(int id, String username, String password)
 	{
