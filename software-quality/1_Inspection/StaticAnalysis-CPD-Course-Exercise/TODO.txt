@@ -1,0 +1,15 @@
+TODO: Copy/Paste Detector - Course
+---------------------------------------------------------------------
+
+Der vorliegende Source Code wurde mit dem PMD/CPD Clone Detector 
+analysiert.
+
+Das Ergebnis finden Sie im File "cpd-report.txt"
+	
+Entfernen Sie die redundanten Code durch gezieltes Refactoring.
+	
+Beachten Sie, dass die gegebenen Testfälle der Klasse "CourseTest"
+nach dem Refactoring noch durchlaufen müssen!  
+
+Tipp: Verwenden Sie das gegebene build.xml
+	
