@@ -1,0 +1,38 @@
+##
+# FindBugs configuration
+#
+##
+
+# Global settings
+analysis.version = 0.0.1
+analysis.reports = reports
+
+# Project under test
+project.home = ../Caddat
+project.src = ${project.home}/src/java
+project.test = ${project.home}/src-test/java
+project.build = ${project.home}/build
+
+
+# Findbugs settings
+findbugs.output.format = xml
+findbugs.output.file = ${analysis.reports}/findbugs-report.xml
+
+
+# CPD settings
+cpd.minimumTokenCount = 50
+#cpd.output.format = text
+#cpd.output.file = ${analysis.reports}/cpd-report.txt
+cpd.output.format = xml
+cpd.output.file = ${analysis.reports}/cpd-report.xml
+
+
+# PMD settings
+#pmd.output.format = html
+#pmd.output.file = ${analysis.reports}/pmd-report.html
+pmd.output.format = xml
+pmd.output.file = ${analysis.reports}/pmd-report.xml
+
+# JavaNCSS
+javancss.output.file=${analysis.reports}/javancss-report.xml
+javancss.output.format=xml
