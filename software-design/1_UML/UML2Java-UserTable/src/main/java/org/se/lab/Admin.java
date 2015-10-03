@@ -21,16 +21,16 @@ public class Admin
 	/*
 	 * Property: RootPassword:String
 	 */
-	private String RootPassword;
+	private String rootPassword;
 	public String getRootPassword()
 	{
-		return RootPassword;
+		return rootPassword;
 	}
 	public void setRootPassword(String rootPassword)
 	{
 		if(rootPassword == null)
 			throw new IllegalArgumentException();
-		RootPassword = rootPassword;
+		this.rootPassword = rootPassword;
 	}
 
 	
@@ -42,6 +42,6 @@ public class Admin
 	@Override
 	public String toString()
 	{
-		return "Admin [RootPassword=" + RootPassword + "]";
+		return "Admin [RootPassword=" + rootPassword + "]";
 	}	
 }
