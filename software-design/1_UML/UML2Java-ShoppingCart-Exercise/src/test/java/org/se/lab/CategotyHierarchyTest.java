@@ -5,9 +5,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.se.lab.Category;
-import org.se.lab.Entity;
-import org.se.lab.Product;
 
 public class CategotyHierarchyTest
 {
@@ -25,7 +22,7 @@ public class CategotyHierarchyTest
 	@Before
 	public void setUp()
 	{
-		Entity.setNextId(1);
+		IntegerSequence.setInitValue(1);
 		
 		book = new Category("Books");		
 		Category english = new Category("English Books");
