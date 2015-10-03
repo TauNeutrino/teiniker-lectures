@@ -17,11 +17,11 @@ public class GroupTest
         
         User u1 = new User(3, "homer", "***");
         g.addUser(u1);
-        u1.setGroup(g);
+//        u1.setGroup(g);
         
         User u2 = new User(5, "marge", "***");
         g.addUser(u2);
-        u2.setGroup(g);
+//        u2.setGroup(g);
     }
     
     

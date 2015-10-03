@@ -41,6 +41,7 @@ public class Group
         if(user == null)
             throw new IllegalArgumentException();
         users.add(user);
+        user.setGroup(this); // automatically set the user's group too
     }
     public List<User> getUsers()
     {
