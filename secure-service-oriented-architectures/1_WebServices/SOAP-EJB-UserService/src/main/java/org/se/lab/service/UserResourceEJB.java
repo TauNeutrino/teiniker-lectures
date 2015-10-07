@@ -6,12 +6,16 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
+import javax.jws.soap.SOAPBinding.Style;
 
 import org.apache.log4j.Logger;
 import org.se.lab.data.User;
 import org.se.lab.data.UserDAO;
 
 @WebService(name="UserService")
+//@SOAPBinding(style=Style.RPC)
+@SOAPBinding(style=Style.DOCUMENT) // default setting
 @Stateless
 public class UserResourceEJB
 {
@@ -55,12 +59,13 @@ public class UserResourceEJB
 	
 	
 	@WebMethod
-	public List<UserDTO> findAll()
+	public List<UserDTO> findAll(int index, int size)
 	{
-		LOG.debug("find all Users");
+		LOG.debug("find all Users [from: " + index + " with size: " + size + "]");
 		
 		List<User> list = dao.findAll();
 		List<UserDTO> result = UserDTO.toUserDTOList(list);
+		LOG.info("size = " + result.size());
 		return result;
 	}
 	
