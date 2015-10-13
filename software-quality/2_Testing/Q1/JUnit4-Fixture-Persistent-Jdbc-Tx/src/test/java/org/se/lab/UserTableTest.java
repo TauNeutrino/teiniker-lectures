@@ -21,15 +21,15 @@ public class UserTableTest
 	public static void init()
 	{
 		AbstractJdbcTest helper = new AbstractJdbcTest();
-		helper.executeSqlScript("sql/createUserTable.sql");
-		helper.executeSqlScript("sql/insertUserTable.sql");
+		helper.executeSqlScript("src/test/resources/sql/createUserTable.sql");
+		helper.executeSqlScript("src/test/resources/sql/insertUserTable.sql");
 	}
 	
 	@AfterClass
 	public static void destroy()
 	{
 		AbstractJdbcTest helper = new AbstractJdbcTest();
-		helper.executeSqlScript("sql/dropUserTable.sql");		
+		helper.executeSqlScript("src/test/resources/sql/dropUserTable.sql");		
 	}
 	
 	@Before
