@@ -1,4 +1,4 @@
-TODO: Singleton Pattern + Factory Method
+Exercise: Singleton Pattern + Factory Method
 ---------------------------------------------------------------------
 
 Schreiben Sie ein Interface "TableFactory", welche die folgende 
