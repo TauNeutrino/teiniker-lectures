@@ -3,13 +3,7 @@
 #include <memory.h>
 #include <stdlib.h>
 
-
-struct node
-{
-    int value;
-    struct node *next_ptr;
-};
-
+#include "stack.h"
 
 struct node *new_node(int value)
 {
@@ -58,26 +52,5 @@ int stack_size(struct node **stack_ptr)
         i++;
     }
     return i;
-}
-
-
-int main()
-{
-    // setup stack
-    struct node *stack_ptr = NULL;
-    stack_push(&stack_ptr, 1);     
-    stack_push(&stack_ptr, 2);
-    stack_push(&stack_ptr, 3);
-    stack_push(&stack_ptr, 4);
-    
-    // navigate
-    int size = stack_size(&stack_ptr);
-    printf("stack size = %d\n", size);
-    for(int i=0; i<size; i++)
-    {
-        printf("%d\n", stack_pop(&stack_ptr));
-    }
-
-    return 0;
 }
 

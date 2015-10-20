@@ -5,11 +5,19 @@ LDLIBS =
 CC=gcc
 
 
-all: stack  
+all: main  
 
-pointer: stack.c
-	$(CC) $(CFLAGS) $(LDLIBS) -o stack stack.c 
+
+
+stack.o: stack.c
+	$(CC) $(CFLAGS) $(LDLIBS) -c stack.c 
+
+main.o: main.c
+	$(CC) $(CFLAGS) $(LDLIBS) -c main.c 
+
+main: stack.o main.o
+	$(CC) $(CFLAGS) $(LDLIBS) stack.o main.o -o stack 
 
 clean:
-	rm -f stack
+	rm -f *.o stack
 
