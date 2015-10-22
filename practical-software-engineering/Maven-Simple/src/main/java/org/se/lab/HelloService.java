@@ -2,8 +2,10 @@ package org.se.lab;
 
 public class HelloService
 {
-	public String sayHelloTo(String name)
+	public int sayHelloTo(String name)
 	{
-		return "Hello, " + name + "!";
+	    String msg = "Hello, " + name + "!"; 
+	    System.out.println(msg);
+		return msg.length();
 	}
 }
