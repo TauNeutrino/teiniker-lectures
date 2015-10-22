@@ -8,6 +8,7 @@ import javax.xml.namespace.QName;
 import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPHeader;
+import javax.xml.soap.SOAPHeaderElement;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.ws.handler.MessageContext;
 import javax.xml.ws.handler.soap.SOAPHandler;
@@ -41,16 +42,14 @@ public class ClientSideHandler
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             soapMsg.writeTo(out);
             msg.append(out); 
-            
-            
-//            //add a soap header, name as "mac address"
-//            QName qname = new QName("http://ws.mkyong.com/", "macAddress");
-//            SOAPHeaderElement soapHeaderElement = soapHeader.addHeaderElement(qname);
-//
-//            soapHeaderElement.setActor(SOAPConstants.URI_SOAP_ACTOR_NEXT);
-//            soapHeaderElement.addTextNode(mac);
-//            soapMsg.saveChanges();
-
+                        
+            if(isRequest)
+            {
+                QName qname = new QName("http://lab.se.org/", "token");
+                SOAPHeaderElement soapHeaderElement = soapHeader.addHeaderElement(qname);    
+                soapHeaderElement.addTextNode("uVr3Ufrf8BN17go8YIQ9pj+TGn4BjBi3qfjJ+rMXCpiLA6LI/3s0X8y5+A9/6bhQ+QubWSqoIW9jIBVbUX44SQ==");
+                soapMsg.saveChanges();
+            }
         }
         catch (SOAPException e)
         {
