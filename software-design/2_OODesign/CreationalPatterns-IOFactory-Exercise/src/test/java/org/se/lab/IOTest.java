@@ -2,42 +2,42 @@ package org.se.lab;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-public class IOFactoryTest
+public class IOTest
 {
 	private final static String DIRECTORY = "doc";
-	
-	@Before
-	public void setup()
-	{
-		File f = new File(DIRECTORY,"myfile");
-		if(f.exists())
-			f.delete();
-	}
-	
+
 	@Test
-	public void testCreatePrintWriter()
+	public void testPrintWriter() throws IOException
 	{
-		PrintWriter out = IOFactory.getInstance().createPrintWriter("myfile");
-        
-		out.println("0000 0000: 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f");
+		String fileName = "myfile";
+		File f = new File(DIRECTORY, fileName);
+		FileWriter writer = new FileWriter(f);
+        PrintWriter out = new PrintWriter(writer);
+
+        out.println("0000 0000: 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f");
         out.close();
          
-        File f = new File(DIRECTORY,"myfile");
         Assert.assertTrue(f.exists());
+        Assert.assertEquals(59, f.length());
 	}
 
 	
 	@Test
-	public void testCreateBufferedReader() throws IOException
+	public void testBufferedReader() throws IOException
 	{
-		BufferedReader in = IOFactory.getInstance().createBufferedReader("data.txt");
+		String fileName = "data.txt";
+
+		File f = new File(DIRECTORY, fileName);
+		FileReader reader = new FileReader(f);
+		BufferedReader in = new BufferedReader(reader);
 
 		StringBuilder s = new StringBuilder();
 		String l;

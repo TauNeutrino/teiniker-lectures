@@ -1,4 +1,4 @@
-TODO: IO Factory (Factory Method + Singleton)
+Exercise: Factory Method + Singleton 
 ---------------------------------------------------------------------
 
 Um von Java in Files zu schreiben bzw. aus Files zu lesen, müssen
@@ -6,7 +6,6 @@ Um von Java in Files zu schreiben bzw. aus Files zu lesen, müssen
 sind weitere Objekte (vom Typ "File", "FileWriter" und "FileReader") 
 notwendig, d.h. es sind immer mehrere "new" Operatoren-Aufrufe 
 durchzuführen - siehe "IOTest".
-
 
 1. Factory Method
 ---------------------------------------------------------------------
@@ -18,7 +17,6 @@ Factory Methoden enthällt:
 
 Anschließend schreiben Sie die Klasse "IOFactory", die das Interface
 "IOFactoryOperations" implementiert.
-
 
 2. Singleton
 ---------------------------------------------------------------------
