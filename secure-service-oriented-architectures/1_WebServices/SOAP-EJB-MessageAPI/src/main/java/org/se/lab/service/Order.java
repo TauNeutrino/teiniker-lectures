@@ -24,7 +24,22 @@ public class Order
 		setName(name);
 	}
 	
-	
+//	/*
+//     * Property: id
+//     */
+//    
+//    @XmlAttribute
+//    private int id;
+//    public int getId()
+//    {
+//        return id;
+//    }
+//    public void setId(int id)
+//    {
+//        this.id = id;
+//    }
+
+    
     /*
 	 * Property: name:String
 	 */
@@ -61,9 +76,16 @@ public class Order
      * Object methods
      */
     
+//    @Override
+//    public String toString()
+//    {
+//        return "Order [id=" + id + ", name=" + name + ", lines=" + lines + "]";
+//    }
+    
     @Override
     public String toString()
     {
         return "Order [name=" + name + ", lines=" + lines + "]";
     }
+   
 }
