@@ -37,7 +37,8 @@
 	      	</plugin>
 	      	
         
-        	<!-- usage of jax-ws maven plugin-->
+        	<!-- usage of jax-ws maven plugin
+        	-->
         	<plugin> 
             	<groupId>org.codehaus.mojo</groupId>
             	<artifactId>jaxws-maven-plugin</artifactId>
@@ -51,23 +52,13 @@
                 	</execution>
             	</executions>
             	<configuration>
-                	<!-- using wsdl from an url -->
                 	<wsdlUrls>
                     	<wsdlUrl>
                         http://localhost:8080/SOAP-EJB-MessageAPI/OrderService?wsdl
                     	</wsdlUrl>
                 	</wsdlUrls>
-                	<!-- or using wsdls file directory -->
-                    <!-- <wsdlDirectory>src/wsdl</wsdlDirectory> -->
-                	<!-- which wsdl file -->
-                	<!-- <wsdlFiles> -->
-                    <!-- <wsdlFile>myWSDL.wsdl</wsdlFile> -->
-                	<!--</wsdlFiles> -->
-                	<!-- Keep generated files -->
                 	<keep>false</keep> 
-                	<!-- Package name --> 
                 	<packageName>org.se.lab.client</packageName> 
-                	<!-- generated source files destination-->
                 	<sourceDestDir>src/generated/java</sourceDestDir>
             	</configuration>
         	</plugin>
