@@ -18,7 +18,8 @@
 
 
 			<!-- HOW TO USE this plugin can be found here: -->
-			<!-- http://confluence.highsource.org/display/MJIIP/User+Guide -->
+			<!-- http://confluence.highsource.org/display/MJIIP/User+Guide 
+			-->
 			<plugin>
 				<groupId>org.jvnet.jaxb2.maven2</groupId>
 				<artifactId>maven-jaxb2-plugin</artifactId>
