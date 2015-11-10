@@ -48,5 +48,19 @@ $ keytool -genkeypair -keystore wildfly.keystore -storepass student -keypass stu
 	=> Undertow HTTPS listener https listening on localhost/127.0.0.1:8443
 	
 	
-	
+How to configure a WS application to use TLS?
+-------------------------------------------------------------------------------
+
+src/main/webapp/WEB-INF/web.xml
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>All resources</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+		
  
