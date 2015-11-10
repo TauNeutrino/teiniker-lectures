@@ -56,6 +56,8 @@ This request will be redirected to:
 
 => https://localhost:8443/SOAP-EJB-UserService-TLS/UserService?wsdl
 
+$ curl --insecure --verbose https://localhost:8443/SOAP-EJB-UserService-TLS/UserService?wsdl
+
 
 How to access SOAP WS via using SoapUI?
 -------------------------------------------------------------------------------
