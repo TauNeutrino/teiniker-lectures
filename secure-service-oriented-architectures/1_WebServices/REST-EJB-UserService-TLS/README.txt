@@ -63,4 +63,12 @@ src/main/webapp/WEB-INF/web.xml
 		</user-data-constraint>
 	</security-constraint>
 		
+
+How to access the REST resource?
+-------------------------------------------------------------------------------
+
+URL http://localhost:8080/REST-EJB-UserService-TLS/v1/users
+
+=> https://localhost:8443/REST-EJB-UserService-TLS/v1/users
+
  
