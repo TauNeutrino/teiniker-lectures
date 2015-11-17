@@ -1,10 +1,10 @@
 package org.se.lab.service;
 
 import java.net.URI;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -15,7 +15,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 
 import org.apache.log4j.Logger;
 
@@ -62,12 +64,18 @@ public class ProductResourceEJB
 	}
 	
 	
-	@RolesAllowed({"admin"})
 	@GET
 	@Produces({"application/xml", "application/json"})
-	public List<ProductDTO> findAll()
+	public List<ProductDTO> findAll(@Context SecurityContext context)
 	{
 		LOG.debug("find all Products");
+		
+		LOG.info("isSecure()              = " + context.isSecure());
+		LOG.info("isUserInRole(\"user\")  = " + context.isUserInRole("user"));
+		LOG.info("isUserInRole(\"admin\") = " + context.isUserInRole("admin"));
+		
+		Principal principal = context.getUserPrincipal();		
+		LOG.info("principal.getName()     = " + principal.getName());
 		
 		List<ProductDTO> result = new ArrayList<>();
 		result.add(new ProductDTO(102, "Effective Java", 3336));
@@ -76,7 +84,6 @@ public class ProductResourceEJB
 	}
 	
 	
-	@RolesAllowed({"user", "admin"})
 	@GET
 	@Path("{id}")
 	@Produces({"application/xml", "application/json"})

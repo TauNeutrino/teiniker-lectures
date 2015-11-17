@@ -118,4 +118,57 @@ Using SoapUI we can simulate different clients accessing different resources:
 	
 	homer	=> HTTP/1.1 401 Unauthorized
 	
-	
+
+
+Programmatically implementation of fine-grained permissions.
+-------------------------------------------------------------------------------
+Within the operations of Web services, we can add an additional parameter to
+the method. This allows access to the security context (without altering the
+way clients invoke the method).
+
+	@GET
+	@Produces({"application/xml", "application/json"})
+	public List<ProductDTO> findAll(@Context SecurityContext context)
+	{
+		LOG.info("isSecure()              = " + context.isSecure());
+		LOG.info("isUserInRole(\"user\")  = " + context.isUserInRole("user"));
+		LOG.info("isUserInRole(\"admin\") = " + context.isUserInRole("admin"));
+		
+		Principal principal = context.getUserPrincipal();		
+		LOG.info("principal.getName()     = " + principal.getName());
+		
+		// ...
+	}
+
+isUserInRole()
+The functionality of the method isUserInRole() is similar to the annotation 
+@RolesAllowed, its goal is to perform a check in order to determine if a 
+authenticated user belongs to a specified role.
+
+getUserPrincipal()
+The getUserPrincipal() method obtains the authenticated user. We can ask for 
+information such as the username of the user.
+This is useful in scenarios in which we want to generate audit trails.
+
+isSecure()
+The method isSecure() determines whether the invocation is being made through 
+a secure communication like HTTPS.
+
+
+Using SoapUI we can simulate different clients and analyze the output of these
+methods:
+
+	/REST-EJB-Authorization-Annotations/v1/products
+	student =>
+		 isSecure()             = false
+		 isUserInRole("user")  	= true
+		 isUserInRole("admin") 	= false
+		 principal.getName()    = student	
+
+	teacher =>
+		 isSecure()             = false
+		 isUserInRole("user")  	= true
+		 isUserInRole("admin") 	= true
+		 principal.getName()    = teacher
+			 
+		 
