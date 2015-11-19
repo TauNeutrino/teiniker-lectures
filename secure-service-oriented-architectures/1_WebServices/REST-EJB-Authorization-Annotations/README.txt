@@ -108,11 +108,11 @@ How to test client permissions?
 -------------------------------------------------------------------------------
 Using SoapUI we can simulate different clients accessing different resources:
 	
-	http://localhost:8080/REST-EJB-Authorization/v1/users
+	http://localhost:8080/REST-EJB-Authorization-Annotations/v1/users
 	student	=> HTTP/1.1 403 Forbidden
 	teacher	=> HTTP/1.1 200 OK
 		
-	http://localhost:8080/REST-EJB-Authorization/v1/users/1
+	http://localhost:8080/REST-EJB-Authorization-Annotations/v1/users/1
 	student	=> HTTP/1.1 200 OK
 	teacher	=> HTTP/1.1 200 OK
 	
