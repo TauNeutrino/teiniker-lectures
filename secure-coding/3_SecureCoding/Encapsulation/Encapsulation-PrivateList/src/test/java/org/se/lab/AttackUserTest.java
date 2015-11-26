@@ -22,8 +22,6 @@ public class AttackUserTest
 		
 		user = new User("teini", list);
 	}
-	
-	
 	@Test
 	public void testAttack_RemoveUsersMails()
 	{
@@ -54,4 +52,14 @@ public class AttackUserTest
 		final String expected = "teini,[egon.teiniker@fhj.at, teiniker@gmx.com]";
 		Assert.assertEquals(expected, user.toString());		
 	}
+
+    
+    @Test
+    public void testAttack_MailAddress()
+    {
+        user.getMails().get(0).setAddress("devil@hell.com");
+        
+        final String expected = "teini,[egon.teiniker@fhj.at, teiniker@gmx.com]";
+        Assert.assertEquals(expected, user.toString());
+    }
 }

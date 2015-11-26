@@ -41,7 +41,7 @@ public class User
 		// Defensively copy mutable outputs.
 		List<EMail> list = new ArrayList<EMail>();
 		for(EMail mail : mails)
-			list.add(mail);
+			list.add(new EMail(mail.getAddress()));
 		return list;
 		
 // Other possible solutions:				
@@ -59,7 +59,7 @@ public class User
 		// Defensively copy mutable inputs.
 		this.mails = new ArrayList<EMail>(); 
 		for(int i=0; i< mails.size();i++)
-			this.mails.add(mails.get(i));
+			this.mails.add(new EMail(mails.get(i).getAddress()));
 	}
 		
 	

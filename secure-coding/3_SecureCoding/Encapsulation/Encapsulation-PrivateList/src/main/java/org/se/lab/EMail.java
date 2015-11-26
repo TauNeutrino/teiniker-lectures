@@ -1,37 +1,33 @@
 package org.se.lab;
 
-import java.util.regex.Pattern;
-
-public final class EMail
+public class EMail
 	implements Comparable<EMail>
 {
-	private final Pattern EMAIL_PATTERN =
-		Pattern.compile("^[a-z0-9-+%.]+@[a-z0-9-.]+\\.[a-z]{2,4}$");
-
 	/*
 	 * Constructors
 	 */
 	public EMail(String address)
 	{
-		if(address == null)
-			throw new IllegalArgumentException("address");
-
-		if(!EMAIL_PATTERN.matcher(address).matches())
-			throw new IllegalArgumentException("Invalid mail address: " + address);
-
-		this.address = address;
+	    setAddress(address);
 	}
 
 
 	/*
 	 * Property: address:String
 	 */
-	private final String address;
+	private String address;
 	public final String getAddress()
 	{
 		return address;
 	}
+	public final void setAddress(String address)
+	{
+        if(address == null)
+            throw new IllegalArgumentException("address");
 
+        this.address = address;	    
+	}
+	
 
 	/*
 	 * Object methods

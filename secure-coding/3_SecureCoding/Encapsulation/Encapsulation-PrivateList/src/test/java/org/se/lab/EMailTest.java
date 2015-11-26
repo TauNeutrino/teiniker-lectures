@@ -19,12 +19,6 @@ public class EMailTest
 	}
 
 	@Test(expected=IllegalArgumentException.class)
-	public void testToStringWrongAddress()
-	{
-		new EMail("egon.teiniker@fh-joanneum");
-	}
-
-	@Test(expected=IllegalArgumentException.class)
 	public void testNull()
 	{
 		new EMail(null);
