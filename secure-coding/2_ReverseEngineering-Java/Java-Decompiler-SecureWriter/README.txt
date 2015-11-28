@@ -3,13 +3,6 @@ How to install the Java Decompiler jd
 
 http://jd.benow.ca/
 
-download: jd-gui-0.3.5.linux.i686.tar.gz
-$ cd install/
-$ mkdir jd-gui
-$ cd jd-gui/
-$ tar -xvzf ~/Downloads/jd-gui-0.3.5.linux.i686.tar.gz 
-$ ./jd-gui
-
 
 How to attack a Java class file using a Decompiler
 ---------------------------------------------------------------------
@@ -19,7 +12,7 @@ the command line, encrypts this text and prints the encrypted version
 back to the console.
 
 Example:
-	$ java -cp ./build org.se.lab.SecureWriter Hello
+	$ java -cp ./target/classes org.se.lab.SecureWriter Hello
 	559a15168f732657947cc6fd64cbfe98
 
 As an attacker, we can use a Java decompiler to disable the encryption
