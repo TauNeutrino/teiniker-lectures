@@ -1,0 +1,8 @@
+/.settings/
+/build/
+/build-ant/
+/build-instrumented/
+/report/
+/.classpath
+/.project
+/cobertura.ser
