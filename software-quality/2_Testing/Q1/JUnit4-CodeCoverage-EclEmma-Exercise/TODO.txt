@@ -1,0 +1,8 @@
+Exercise: Code Coverage (EclEmma)
+--------------------------------------------------------------------
+
+Erweitern Sie die Testfälle der Klasse "UserTest" damit Sie eine
+Code Coverage von 100% erreichen.
+
+Vergleichen Sie die Ergebnisse der Code-Coverage Messung mit den Werten 
+der Cyclomatc Complexity Number nach McCabe. 
