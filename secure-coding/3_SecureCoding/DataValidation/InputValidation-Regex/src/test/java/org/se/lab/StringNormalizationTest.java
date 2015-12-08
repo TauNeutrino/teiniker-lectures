@@ -20,8 +20,8 @@ import org.junit.Test;
 
 public class StringNormalizationTest
 {	
-	private String s = "<script>";
-//	private String s = "\uFE64" + "script" + "\uFE65";
+//	private String s = "<script>";
+	private String s = "\uFE64" + "script" + "\uFE65";
 	private Pattern pattern = Pattern.compile("[<>]");
 
 	@Test
