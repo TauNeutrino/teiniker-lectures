@@ -14,13 +14,13 @@ public final class EMail
 	{
 		// check for null pointer
 		if(address == null)
-			throw new NullPointerException();
+			throw new IllegalArgumentException("Address is null!");
 		
 		// validate address format
 		String s = Normalizer.normalize(address, Form.NFKC);
 		Matcher m = ADDRESS_PATTERN.matcher(s);
 		if(!m.matches())
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid address!");
 			
 		// store address
 		this.address = address;
@@ -31,7 +31,7 @@ public final class EMail
 	 * Property: address:String
 	 */
 	private final String address;
-	private final Pattern ADDRESS_PATTERN = Pattern.compile("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
+	private final static Pattern ADDRESS_PATTERN = Pattern.compile("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
 	public String getAddress()
 	{
 		return address;
