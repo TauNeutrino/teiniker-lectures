@@ -5,7 +5,7 @@ Example: Tracing System Calls
 
 $ su
 Password: root66
-# systemctl start mysqld.service
+# systemctl start mariadb.service
 
 
 2. Start the mysql client console
