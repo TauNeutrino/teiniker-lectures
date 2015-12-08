@@ -11,7 +11,7 @@ bool is_valid_user(char* username, char* password)
     fp = fopen("application-users.config", "r");
     if (fp == NULL) 
     {
-        fprintf(stderr, "Can't open passwords.txt file!\n");
+        fprintf(stderr, "Can't open application-users.config file!\n");
         return false;
     }
     
