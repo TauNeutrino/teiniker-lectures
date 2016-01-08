@@ -10,6 +10,6 @@ $ make
 $ make install
 
 Add the following line to ~/.bashrc:
-	export LD_LIBRARY_PATH=/home/student/install/log4c-1.2.4/lib
+	export LD_LIBRARY_PATH=/home/student/install/log4c-1.2.4/lib:$LD_LIBRARY_PATH
 	
 	
