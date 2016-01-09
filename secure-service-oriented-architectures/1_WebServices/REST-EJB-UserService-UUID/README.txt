@@ -1,6 +1,10 @@
+To test this Web service we can use SoapUI:
 
-http://localhost:8080/LabExam-SecSOA-2016-01-29-G1-Teiniker/v1/users
-
+URL: http://localhost:8080/REST-EJB-UserService-UUID/v1/users
+                       
+                           
+1. Insert the following users:
+-------------------------------------------------------------------------------
 {
    "id": "",
    "username": "homer",
@@ -18,4 +22,12 @@ http://localhost:8080/LabExam-SecSOA-2016-01-29-G1-Teiniker/v1/users
    "username": "lisa",
    "password": "xO0U4gIN1F7bV7X7ovQN2TlSUF4="
 }
+
+
+2. Request all users to find out their uuid values
+-------------------------------------------------------------------------------
+
+
+3. Request a single user by its id (for example marge)
+-------------------------------------------------------------------------------
 
