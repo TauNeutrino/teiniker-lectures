@@ -6,7 +6,7 @@ Exercise: Message Data Encryption
 
 	You reuse code from the SymmetricBlockCipherTest class.
 
-	Tip: Implement the encryption and de-cryption logic within the UserDTO class.
+	Tip: Implement the encryption and de-cryption logic.
 
 	Tip: Use system properties to set key and iv values for the Web service.
 
