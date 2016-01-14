@@ -15,8 +15,9 @@ import org.junit.Test;
 public class UserServiceXMLTest 
 	extends AbstractTestBase
 {
-	private static final String WEB_APP_NAME = "/REST-EJB-UserService-DataEncryption-Exercise/v1";
+	private static final String WEB_APP_NAME = "/REST-EJB-UserService-DataEncryption/v1";
 	private static final JdbcTestHelper JDBC_HELPER = new JdbcTestHelper();
+
 	
 	@Before
 	public void init()
@@ -40,8 +41,8 @@ public class UserServiceXMLTest
 		String requestContent = 
 				"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
 				+ "<user id=\"0\">"
-				+ 	"<username>maggie</username>"
-				+ 	"<password>AZ2wv9X4WVHLRuRFLpZChYwAQVU=</password>"
+				+   "<username>" + encryptToString("maggie") + "</username>"
+				+   "<password>" + encryptToString("AZ2wv9X4WVHLRuRFLpZChYwAQVU=") + "</password>"
 				+ "</user>";
 		
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection(PROXY);
@@ -76,8 +77,8 @@ public class UserServiceXMLTest
 		final String EXPECTED = 
 				"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
 				+ "<user id=\"3\">"
-				+ 	"<username>bart</username>"
-				+ 	"<password>Ls4jKY8G2ftFdy/bHTgIaRjID0Q=</password>"
+				+   "<username>" + encryptToString("bart") + "</username>"
+				+   "<password>" + encryptToString("Ls4jKY8G2ftFdy/bHTgIaRjID0Q=") + "</password>"
 				+ "</user>\n";		
 		System.out.println("Response-Content:\n" + content);
 		Assert.assertEquals(EXPECTED, content);
@@ -102,20 +103,20 @@ public class UserServiceXMLTest
 				"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
 				+ "<collection>"
 				+ 	"<user id=\"1\">"
-				+ 		"<username>homer</username>"
-				+ 		"<password>ijD8qepbRnIsva0kx0cKRCcYysg=</password>"
+				+ 		"<username>" + encryptToString("homer") + "</username>"
+				+ 		"<password>" + encryptToString("ijD8qepbRnIsva0kx0cKRCcYysg=") + "</password>"
 				+ 	"</user>"
 				+ 	"<user id=\"2\">"
-				+ 		"<username>marge</username>"
-				+ 		"<password>xCSuPDv2U6I5jEO1wqvEQ/jPYhY=</password>"
+				+ 		"<username>" + encryptToString("marge") + "</username>"
+				+ 		"<password>" + encryptToString("xCSuPDv2U6I5jEO1wqvEQ/jPYhY=") + "</password>"
 				+ 	"</user>"
 				+ 	"<user id=\"3\">"
-				+ 		"<username>bart</username>"
-				+ 		"<password>Ls4jKY8G2ftFdy/bHTgIaRjID0Q=</password>"
+				+ 		"<username>" + encryptToString("bart") + "</username>"
+				+ 		"<password>" + encryptToString("Ls4jKY8G2ftFdy/bHTgIaRjID0Q=") + "</password>"
 				+ 	"</user>"
 				+ 	"<user id=\"4\">"
-				+ 		"<username>lisa</username>"
-				+ 		"<password>xO0U4gIN1F7bV7X7ovQN2TlSUF4=</password>"
+				+ 		"<username>" + encryptToString("lisa") + "</username>"
+				+ 		"<password>" + encryptToString("xO0U4gIN1F7bV7X7ovQN2TlSUF4=") + "</password>"
 				+ 	"</user>"
 				+ "</collection>\n";
 		System.out.println("Response-Content:\n" + content);

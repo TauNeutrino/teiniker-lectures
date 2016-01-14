@@ -23,6 +23,7 @@ public class MessageEncryption
         {   
             String keyProperty = System.getProperty("encryption.key");
             String ivProperty = System.getProperty("encryption.iv");
+            
             byte[] input = inputString.getBytes();
             byte[] ivBytes = Hex.decodeHex(ivProperty.toCharArray());
             byte[] keyBytes = Hex.decodeHex(keyProperty.toCharArray());
@@ -53,6 +54,7 @@ public class MessageEncryption
         {
             String keyProperty = System.getProperty("encryption.key");
             String ivProperty = System.getProperty("encryption.iv");
+            
             byte[] ivBytes = Hex.decodeHex(ivProperty.toCharArray());
             byte[] keyBytes = Hex.decodeHex(keyProperty.toCharArray());
             byte[] cipherBytes = Hex.decodeHex(cipherText.toCharArray());
