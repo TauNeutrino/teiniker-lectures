@@ -17,12 +17,32 @@ import org.apache.commons.codec.binary.Hex;
 
 public class MessageEncryption
 {
+    private static String keyProperty = System.getProperty("encryption.key");
+    private static String ivProperty = System.getProperty("encryption.iv");
+    
+    /*
+     * init() can be used to override Wildfly system properties with test
+     * specific values.
+     */
+    public static void init(String key, String iv)
+    {
+        if(key == null)
+            throw new IllegalArgumentException("Invalid cipher key!");
+        
+        if(iv == null)
+            throw new IllegalArgumentException("Invalid cipher IV!");
+        
+        keyProperty = key;
+        ivProperty = iv;
+    }
+    
+    
     public static String encryptToString(String inputString)
     {
         try
         {   
-            String keyProperty = System.getProperty("encryption.key");
-            String ivProperty = System.getProperty("encryption.iv");
+//            String keyProperty = System.getProperty("encryption.key");
+//            String ivProperty = System.getProperty("encryption.iv");
             
             byte[] input = inputString.getBytes();
             byte[] ivBytes = Hex.decodeHex(ivProperty.toCharArray());
@@ -52,8 +72,8 @@ public class MessageEncryption
     {
         try
         {
-            String keyProperty = System.getProperty("encryption.key");
-            String ivProperty = System.getProperty("encryption.iv");
+//            String keyProperty = System.getProperty("encryption.key");
+//            String ivProperty = System.getProperty("encryption.iv");
             
             byte[] ivBytes = Hex.decodeHex(ivProperty.toCharArray());
             byte[] keyBytes = Hex.decodeHex(keyProperty.toCharArray());

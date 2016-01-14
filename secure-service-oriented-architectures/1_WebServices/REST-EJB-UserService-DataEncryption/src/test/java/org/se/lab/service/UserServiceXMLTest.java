@@ -41,8 +41,8 @@ public class UserServiceXMLTest
 		String requestContent = 
 				"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
 				+ "<user id=\"0\">"
-				+   "<username>" + encryptToString("maggie") + "</username>"
-				+   "<password>" + encryptToString("AZ2wv9X4WVHLRuRFLpZChYwAQVU=") + "</password>"
+				+   "<username>" + MessageEncryption.encryptToString("maggie") + "</username>"
+				+   "<password>" + MessageEncryption.encryptToString("AZ2wv9X4WVHLRuRFLpZChYwAQVU=") + "</password>"
 				+ "</user>";
 		
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection(PROXY);
@@ -77,8 +77,8 @@ public class UserServiceXMLTest
 		final String EXPECTED = 
 				"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
 				+ "<user id=\"3\">"
-				+   "<username>" + encryptToString("bart") + "</username>"
-				+   "<password>" + encryptToString("Ls4jKY8G2ftFdy/bHTgIaRjID0Q=") + "</password>"
+				+   "<username>" + MessageEncryption.encryptToString("bart") + "</username>"
+				+   "<password>" + MessageEncryption.encryptToString("Ls4jKY8G2ftFdy/bHTgIaRjID0Q=") + "</password>"
 				+ "</user>\n";		
 		System.out.println("Response-Content:\n" + content);
 		Assert.assertEquals(EXPECTED, content);
@@ -103,20 +103,20 @@ public class UserServiceXMLTest
 				"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
 				+ "<collection>"
 				+ 	"<user id=\"1\">"
-				+ 		"<username>" + encryptToString("homer") + "</username>"
-				+ 		"<password>" + encryptToString("ijD8qepbRnIsva0kx0cKRCcYysg=") + "</password>"
+				+ 		"<username>" + MessageEncryption.encryptToString("homer") + "</username>"
+				+ 		"<password>" + MessageEncryption.encryptToString("ijD8qepbRnIsva0kx0cKRCcYysg=") + "</password>"
 				+ 	"</user>"
 				+ 	"<user id=\"2\">"
-				+ 		"<username>" + encryptToString("marge") + "</username>"
-				+ 		"<password>" + encryptToString("xCSuPDv2U6I5jEO1wqvEQ/jPYhY=") + "</password>"
+				+ 		"<username>" + MessageEncryption.encryptToString("marge") + "</username>"
+				+ 		"<password>" + MessageEncryption.encryptToString("xCSuPDv2U6I5jEO1wqvEQ/jPYhY=") + "</password>"
 				+ 	"</user>"
 				+ 	"<user id=\"3\">"
-				+ 		"<username>" + encryptToString("bart") + "</username>"
-				+ 		"<password>" + encryptToString("Ls4jKY8G2ftFdy/bHTgIaRjID0Q=") + "</password>"
+				+ 		"<username>" + MessageEncryption.encryptToString("bart") + "</username>"
+				+ 		"<password>" + MessageEncryption.encryptToString("Ls4jKY8G2ftFdy/bHTgIaRjID0Q=") + "</password>"
 				+ 	"</user>"
 				+ 	"<user id=\"4\">"
-				+ 		"<username>" + encryptToString("lisa") + "</username>"
-				+ 		"<password>" + encryptToString("xO0U4gIN1F7bV7X7ovQN2TlSUF4=") + "</password>"
+				+ 		"<username>" + MessageEncryption.encryptToString("lisa") + "</username>"
+				+ 		"<password>" + MessageEncryption.encryptToString("xO0U4gIN1F7bV7X7ovQN2TlSUF4=") + "</password>"
 				+ 	"</user>"
 				+ "</collection>\n";
 		System.out.println("Response-Content:\n" + content);

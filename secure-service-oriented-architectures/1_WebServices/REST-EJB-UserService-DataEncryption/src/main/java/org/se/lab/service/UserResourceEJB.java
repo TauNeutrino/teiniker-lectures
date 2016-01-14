@@ -35,12 +35,16 @@ public class UserResourceEJB
 	
 	@POST
 	@Consumes({"application/xml", "application/json"})
-	public Response insert(UserDTO user)
+	public Response insert(UserDTO userDTO)
 	{
-		LOG.debug("insert: " + user);
+		LOG.debug("insert: " + userDTO);
 		
-		User u = dao.createUser(user.toUser().getUsername(), user.toUser().getPassword());
-		return Response.created(URI.create("/users/" + u.getId())).build();
+		// convert UserDTO into a User entity to apply decryption
+		User u = userDTO.toUser();
+		
+		// note that only the create method inserts a User object in the database.
+		User user = dao.createUser(u.getUsername(), u.getPassword());
+		return Response.created(URI.create("/users/" + user.getId())).build();
 	}
 	
 		
