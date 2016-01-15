@@ -1,0 +1,37 @@
+Exercise: Message Data Signing
+-------------------------------------------------------------------------------
+
+1. Use an HMAC algorithm to calculate a signature for each individual User record. 
+
+	Tip: Use a system properties to set secret key
+
+	
+
+2. Change the UserServiceXMLTest class to verify each record against using the 
+	secret key.
+
+	Tip: Read the key from the rest.properties file.
+	
+
+
+
+How to use system properties in Wildfly?
+-------------------------------------------------------------------------------
+
+standalone.xml:
+
+	 <extensions>
+	 ...
+	 </extensions>
+
+	<system-properties>
+        <property name="encryption.key" value="78dac5d9619a3a10bcab780ecc3f00a6"/>
+        <property name="encryption.iv" value="cbfd3ac00c3019a0ae62658dc1dcaabf"/>
+	</system-properties>
+
+Java code:
+
+		String key = System.getProperty("encryption.key");
+		String iv = System.getProperty("encryption.iv");	
+		
+		
