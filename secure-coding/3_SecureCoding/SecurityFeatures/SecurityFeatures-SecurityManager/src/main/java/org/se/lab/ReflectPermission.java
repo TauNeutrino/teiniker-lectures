@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 
 
 /*
- * $ java -cp ./build -Djava.security.policy=my.policy -Djava.security.manager org.se.lab.ReflectPermission
+ * $ java -cp ./target/classes -Djava.security.policy=my.policy -Djava.security.manager org.se.lab.ReflectPermission
  */
 
 public class ReflectPermission

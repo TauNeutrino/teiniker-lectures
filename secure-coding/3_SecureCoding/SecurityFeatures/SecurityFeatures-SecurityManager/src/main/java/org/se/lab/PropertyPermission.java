@@ -1,7 +1,7 @@
 package org.se.lab;
 
 /*
- * $ java -cp ./build -Djava.security.policy=my.policy -Djava.security.manager org.se.lab.PropertyPermission
+ * $ java -cp ./target/classes -Djava.security.policy=my.policy -Djava.security.manager org.se.lab.PropertyPermission
  */
 
 public class PropertyPermission

@@ -14,13 +14,13 @@ public class PropertyPermission
 
 If we execute this program locally, we will get the following output:
 
-$ java -cp ./build org.se.lab.PropertyPermission
+$ java -cp ./target/classes org.se.lab.PropertyPermission
 /home/student
 
 If we start the program with a SecurityManager and a restrictive policy file, 
 we can restrict the access to the user.home system properties:
 
-$ java -cp ./build -Djava.security.policy=my.policy -Djava.security.manager org.se.lab.PropertyPermission
+$ java -cp ./build -Djava.security.manager org.se.lab.PropertyPermission
 
 Exception in thread "main" java.security.AccessControlException: 
   access denied ("java.util.PropertyPermission" "user.home" "read")
@@ -31,10 +31,14 @@ Exception in thread "main" java.security.AccessControlException:
     at java.lang.System.getProperty(System.java:706)
     at org.se.lab.PropertyPermission.main(PropertyPermission.java:11)
 
-To switch on the permission to read the system property, we have to uncomment 
-the following line in the local my.policy file:
+To switch on the permission in our own policy file to read the system property, 
+we have to uncomment the following line in the local my.policy file:
 
     //permission java.util.PropertyPermission "user.home", "read";
+
+$ java -cp ./build -Djava.security.policy=my.policy -Djava.security.manager org.se.lab.PropertyPermission
+/home/student
+
 
 
 Example: java.lang.reflect.ReflectPermission
@@ -90,12 +94,12 @@ public class ReflectPermission
 
 After starting the program we can see the changed value of the private field id:
 
-$ java -cp ./build org.se.lab.ReflectPermission
+$ java -cp ./target/classes org.se.lab.ReflectPermission
 id = 17
 
 To stop this kind of reflection, use the SecurityManager with a proper policy file:
 
-$ java -cp ./build -Djava.security.policy=my.policy -Djava.security.manager org.se.lab.ReflectPermission
+$ java -cp ./target/classes -Djava.security.policy=my.policy -Djava.security.manager org.se.lab.ReflectPermission
 
 java.security.AccessControlException: access denied ("java.lang.reflect.ReflectPermission" "suppressAccessChecks")
     at java.security.AccessControlContext.checkPermission(AccessControlContext.java:366)
