@@ -14,7 +14,7 @@ $ mvn package
 
 To review the content of a jar file type:
 
-$ jar -tf lib/userservice.jar
+$ jar -tf target/SecurityFeatures-Jar-Signing-0.0.1-SNAPSHOT.jar
 
 
 
@@ -63,7 +63,7 @@ Signing jar files ensures that code was not modified.
 Java comes with a tool called "jarsigner", which can be used to sign
 files and verify the signatures and integrity of signed jar files.
 
-$ jarsigner -keystore keys.ks -storepass student -keypass student lib/userservice.jar fhj
+$ jarsigner -keystore keys.ks -storepass student -keypass student target/SecurityFeatures-Jar-Signing-0.0.1-SNAPSHOT.jar fhj
 
 When we execute the command we see a warning statement that 
 "The signer certificate will expire within six months."
@@ -89,7 +89,7 @@ org/se/lab/UserService.class
 
 $ mkdir tmp
 $ cd tmp/
-$ jar xvf ../target/SecurityFeatures-Jar-Signing-0.0.1-SNAPSHOT.jarlib/userservice.jar 
+$ jar xvf ../target/SecurityFeatures-Jar-Signing-0.0.1-SNAPSHOT.jar 
 
 	target/
 	├── classes
