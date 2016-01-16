@@ -30,14 +30,14 @@ public class HMACTest
 	{
 		String message = "Hello KBerg!"; 		
 		byte[] inputBytes = message.getBytes("UTF-8");
-		System.out.println("macBytes: " + Hex.encodeHexString(inputBytes));
+		System.out.println("inputBytes: " + Hex.encodeHexString(inputBytes));
 		
 		Mac hmac = Mac.getInstance("HmacSHA1");		
 		hmac.init(hmacKey);
 		hmac.update(inputBytes);
 		byte[] macBytes = hmac.doFinal();
 
-		System.out.println("macBytes: " + Hex.encodeHexString(macBytes));
+		System.out.println("macBytes  : " + Hex.encodeHexString(macBytes));
 	}
 
 }
