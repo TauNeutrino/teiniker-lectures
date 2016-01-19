@@ -7,11 +7,13 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -34,19 +36,11 @@ public class UserResourceEJB
 	}
 	
 	
-	/*
-	 * Response codes + error handling
-	 * 
-	 * For the case we need to explicitly control the response sent back to 
-	 * the client, a method can return instances of Response.
-	 * Response objects can not be created directly, they are created from 
-	 * ResponseBuilder instances.
-	 */	
 	@POST
 	@Consumes({"application/xml", "application/json"})
-	public Response insert(UserDTO userDTO)
+	public Response insert(UserDTO userDTO, @HeaderParam("Signature") String sig)
 	{
-		LOG.info("insert: " + userDTO);
+		LOG.info("insert: " + userDTO + " [" + sig + "]");
 		try
 		{
 		    User u = userDTO.toUser();
@@ -55,36 +49,37 @@ public class UserResourceEJB
 		}
 		catch(IllegalStateException e)
 		{
-		    return Response.status(Status.NOT_ACCEPTABLE).build();
+		    return Response.status(Status.NOT_ACCEPTABLE).build(); // status => 406
 		}
 	}
 	
 		
 	@GET
 	@Produces({"application/xml", "application/json"})
-	public List<UserDTO> findAll()
+	public Response findAll()
 	{
 		LOG.debug("find all Users");
 		
 		List<User> list = dao.findAll();
 		List<UserDTO> result = UserDTO.toUserDTOList(list);
-		return result;
+		GenericEntity<List<UserDTO>> entity = new GenericEntity<List<UserDTO>>(result) {};
+	    return Response.ok(entity).build();
 	}
 	
 	
 	@GET
 	@Path("{id}")
 	@Produces({"application/xml", "application/json"})
-	public UserDTO findById(@PathParam("id") int id) 
-		throws WebApplicationException
+	public Response findById(@PathParam("id") int id) 
 	{
 		LOG.debug("find User with id=" + id);
 
 		User user = dao.findById(id);
-
+		UserDTO dto = new UserDTO(user);
+		
 		if(user == null)
-			throw new WebApplicationException(Response.Status.NOT_FOUND);
-		else
-			return new UserDTO(user);
+			throw new NotFoundException(); // => status 404
+		
+		return Response.ok(dto).build();
 	}
 }

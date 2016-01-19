@@ -49,7 +49,8 @@ public class UserServiceXMLTest
 		connection.setDoOutput(true);
 		connection.setRequestMethod("POST");
 		connection.setRequestProperty("Content-Type", "application/xml");
-		connection.setRequestProperty("Accept", "application/xml");		
+		connection.setRequestProperty("Accept", "application/xml");	
+		connection.setRequestProperty("Signature", MessageSignature.generateHMacString("0,maggie,AZ2wv9X4WVHLRuRFLpZChYwAQVU="));
 		OutputStreamWriter w = new OutputStreamWriter(connection.getOutputStream());
 		w.write(requestContent);
 		w.flush();
