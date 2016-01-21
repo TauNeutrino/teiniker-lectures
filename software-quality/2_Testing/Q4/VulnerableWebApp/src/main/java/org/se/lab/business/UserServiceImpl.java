@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.se.lab.data.DAOException;
 import org.se.lab.data.User;
 import org.se.lab.data.UserDAO;
+import org.se.lab.util.MD5Encoder;
 
 
 class UserServiceImpl // package private
@@ -135,4 +136,25 @@ class UserServiceImpl // package private
 		}
 		return users;
 	}
+    
+    
+    public boolean login(String username, String password)
+    {
+        logger.debug("login(" + username + "," + password + ")");
+        
+        boolean isValid = false;
+        try
+        {
+            txBegin();
+            isValid = getUserDAO().isValidUser(username, MD5Encoder.convertToMD5String(password));
+            txCommit();
+        }
+        catch(DAOException e)
+        {
+            txRollback();
+            logger.error(e);
+            throw new ServiceException("Can't validate user!", e);
+        }
+        return isValid;     
+    }
 }

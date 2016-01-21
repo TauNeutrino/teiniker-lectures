@@ -198,6 +198,35 @@ public class UserDAOImpl
 	}
 	
 	
+   public boolean isValidUser(String username, String password)
+    {
+        logger.debug("isValidUser(" + username + "," + password + ")");
+        final String SQL = "SELECT id FROM user WHERE username ='" + username
+                + "' AND password = '" + password + "'";
+        logger.debug("SQL> " + SQL);
+
+        Statement stmt = null;
+        ResultSet rs = null;
+        boolean result = false;
+        try
+        {
+            stmt = getConnection().createStatement();
+            rs = stmt.executeQuery(SQL);
+            result = rs.next();
+            logger.debug("=> " + result);
+        } 
+        catch (SQLException e)
+        {
+            return false;
+        } 
+        finally
+        {
+            closeResultSet(rs);
+            closeStatement(stmt);
+        }
+        return result;
+    }
+	
 	public User createUser(String firstName, String lastName, String username, String password)
 	{
 		User u = new User();

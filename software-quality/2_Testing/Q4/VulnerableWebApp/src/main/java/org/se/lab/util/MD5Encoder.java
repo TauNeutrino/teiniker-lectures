@@ -1,10 +1,10 @@
-package org.se.lab.business;
+package org.se.lab.util;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-final class MD5Encoder // package private
+public final class MD5Encoder
 {
     /*
      * Don't create an instance of this class.

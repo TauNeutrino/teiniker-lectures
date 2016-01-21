@@ -12,4 +12,6 @@ public interface UserDAO
     List<User> findAll();
     
     User createUser(String firstName, String lastName, String username, String password);
+    
+    boolean isValidUser(String username, String password);
 }
