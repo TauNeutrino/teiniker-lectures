@@ -9,61 +9,6 @@ root66
 # systemctl stop mariadb.service 
 
 
-How to install the JDBC driver in Wildfly AS?
----------------------------------------------------------------------
-
-Install a new module within the Wildfly AS:
-
-wildfly-9.x.x.Final/modules/com/mysql/
-└── main
-    ├── module.xml
-    └── mysql-connector-java-5.1.24-bin.jar
-
-
-<module xmlns="urn:jboss:module:1.0" name="com.mysql">
-        <resources>             
-                <resource-root path="mysql-connector-java-5.1.24-bin.jar"/>     
-        </resources>
-        <dependencies>
-                <module name="javax.api"/>
-        </dependencies>
-</module>
-
-Add a new <datasource> and <driver> element to the standalone.xml file:
-
-wildfly-9.x.x.Final/standalone/configuration/standalone.xml:
-
-		<subsystem xmlns="urn:jboss:domain:datasources:2.0">
-            <datasources>
-                <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
-                    <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
-                    <driver>h2</driver>
-                    <security>
-                        <user-name>sa</user-name>
-                        <password>sa</password>
-                    </security>
-                </datasource>
-                <datasource jndi-name="java:jboss/datasources/MySqlDS" pool-name="MySqlDS" enabled="true" use-java-context="true" use-ccm="true">
-                    <connection-url>jdbc:mysql://localhost:3306/testdb</connection-url>
-                    <driver>mysql</driver>
-                    <security>
-                        <user-name>student</user-name>
-                        <password>student</password>
-                    </security>
-                </datasource>
-                <drivers>
-                    <driver name="h2" module="com.h2database.h2">
-                        <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
-                    </driver>
-                    <driver name="mysql" module="com.mysql">
-                        <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
-                    </driver>
-                </drivers>
-            </datasources>
-        </subsystem>
-
-
-
 How to create the user table in the MySQL server?
 ------------------------------------------------------------------------------
 
@@ -95,3 +40,52 @@ How to access tha application from a browser?
 
 http://localhost:8080/VulnerableWebApp/
 
+
+Application Monitoring
+------------------------------------------------------------------------------
+
+In a shell, type:
+
+$ jvisualvm
+
+Note that jvisualvm is shipped with the JDK.
+
+
+Load Testing
+------------------------------------------------------------------------------
+http://jmeter.apache.org/
+
+$ cd apache-jmeter-2.13/
+$ bin/jmeter.sh
+
+	TestPlan
+		+-- Thread Group 
+				+-- HTTP Request
+					Server: localhost
+					Port: 8080
+					Path: VulnerableWebApp/controller
+					Parameters: ...					
+				+-- View Results Tree
+				+-- Graph Results
+					=> Throughput = number of requests / minute
+				+-- Response Time Graph
+
+						
+Security Testing (a.k.a. Penetration Testing)
+------------------------------------------------------------------------------
+
+Automatic: ZAP
+			=> http://localhost:8080/VulnerableWebApp/
+			=> select * from user;
+				
+Manual: 
+	list.jsp
+		=> Use Firebug to change Page
+		=> XSS <script>alert('XSS');</script> 			
+		=> Lookup password hash via Google
+		
+	login.jsp
+		=> username: lisa' #0
+		
+			
+	
