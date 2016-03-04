@@ -19,13 +19,13 @@ class EncodingDecorator // package private
 	@Override
 	public void addUser(int id, String username, String password, String mail)
 	{
-		super.addUser(id, username, toMD5(password), mail);
+		super.addUser(id, username, toSHA256(password), mail);
 	}
 
 	@Override
 	public boolean login(String username, String password)
 	{
-		return super.login(username, toMD5(password));
+		return super.login(username, toSHA256(password));
 	}
 	
 	
@@ -33,13 +33,12 @@ class EncodingDecorator // package private
 	 * Utility methods
 	 * (in the case of an exam, these methods would be provided for you!
 	 */
-	
-	private String toMD5(String message)
+	private String toSHA256(String message)
 	{
 		byte[] bytes;
 		try
 		{
-			MessageDigest algorithm = MessageDigest.getInstance("MD5");		
+			MessageDigest algorithm = MessageDigest.getInstance("SHA-256");		
 			algorithm.update(message.getBytes("UTF-8"));
 			bytes = algorithm.digest();
 			String hash = convertToHexString(bytes);
@@ -54,6 +53,7 @@ class EncodingDecorator // package private
 			throw new IllegalStateException(e);
 		}
 	}
+
 	
 	private String convertToHexString(byte[] bytes)
 	{

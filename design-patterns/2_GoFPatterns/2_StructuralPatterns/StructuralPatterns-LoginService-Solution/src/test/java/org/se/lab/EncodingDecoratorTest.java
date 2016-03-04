@@ -34,7 +34,7 @@ public class EncodingDecoratorTest
 	{
 		List<User> users = impl.getUsers();
 		
-		Assert.assertEquals("4126ef98d9f1ae9ab149796ebadac81f", users.get(0).getPassword());
-		Assert.assertEquals("c90f22f15432c55525d815a068b0f4b7", users.get(1).getPassword());
+		Assert.assertEquals("584ac1007be3d04e361fd6d3d2a28c9e15db348a0083c0ee2fd8c27a6ee4007b", users.get(0).getPassword());
+		Assert.assertEquals("6a5777c32e3c5eabefc5c5ff7648a065098359d3e4d9ed776c633b0d2682ffd8", users.get(1).getPassword());
 	}
 }

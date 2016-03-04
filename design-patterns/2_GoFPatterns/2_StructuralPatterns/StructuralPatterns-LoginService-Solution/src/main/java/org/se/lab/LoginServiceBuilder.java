@@ -10,8 +10,7 @@ public class LoginServiceBuilder
 	 * So we use a stack to hold all decorator instances and at the end of
 	 * the building process, we connect the decorators in the right order. 
 	 */
-	private Stack<LoginServiceDecorator> stack = 
-				new Stack<LoginServiceDecorator>();
+	private Stack<LoginServiceDecorator> stack = new Stack<LoginServiceDecorator>();
 	
 		
 	public LoginServiceBuilder withValidation()
