@@ -40,6 +40,12 @@ standalone.xml:
             </filters>
         </subsystem>
 
+standalone/log/access.log:
+127.0.0.1 - - [03/Mar/2016:16:34:16 +0100] "GET / HTTP/1.1" 200 2425
+127.0.0.1 - - [03/Mar/2016:16:34:29 +0100] "GET /WebApp-Resources/ HTTP/1.1" 200 265
+127.0.0.1 - - [03/Mar/2016:16:34:29 +0100] "GET /WebApp-Resources/script.js HTTP/1.1" 200 88
+127.0.0.1 - - [03/Mar/2016:16:34:29 +0100] "GET /WebApp-Resources/tux.jpg HTTP/1.1" 200 10521
+
 
 How to run Wildfly and deploy the Web application?
 -------------------------------------------------------------------------------
