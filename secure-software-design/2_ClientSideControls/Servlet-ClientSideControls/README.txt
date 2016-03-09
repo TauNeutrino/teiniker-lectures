@@ -1,20 +1,6 @@
 Servlet: Client-Side Controls
 ---------------------------------------------------------------------
 
-How to run Wildfly and deploy the Web application?
--------------------------------------------------------------------------------
-
-$ mvn wildfly:run
-
-Make sure that you have configured the wildfly-maven-plugin:
-
-	<configuration>
-		<jbossHome>/home/student/install/wildfly-8.2.0.Final</jbossHome>
-		<port>9990</port>
-		<server-config>standalone.xml</server-config>
-	</configuration> 
-		
-		
 How to setup the client-side?
 ---------------------------------------------------------------------
 o) Run BurpSuite
@@ -86,3 +72,19 @@ d) Forward
 	
 Note: Set debug = true
 
+
+
+How to run Wildfly and deploy the Web application?
+-------------------------------------------------------------------------------
+
+$ mvn wildfly:run
+
+Make sure that you have configured the wildfly-maven-plugin:
+
+	<configuration>
+		<jbossHome>/home/student/install/wildfly-9.0.1.Final/</jbossHome>
+		<port>9990</port>
+		<server-config>standalone.xml</server-config>
+	</configuration> 
+		
+		

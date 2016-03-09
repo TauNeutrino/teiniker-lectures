@@ -29,7 +29,7 @@ public abstract class AbstractHttpClientTest
 	{
 		// read connection settings
 		Properties properties = new Properties();
-		properties.load(this.getClass().getResourceAsStream("/org/se/lab/http.properties"));
+		properties.load(this.getClass().getResourceAsStream("/http.properties"));
 		
 		HOST = properties.getProperty("http.host");
 		PORT = properties.getProperty("http.port");
