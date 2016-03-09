@@ -6,7 +6,7 @@ import java.net.URL;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class PosttRequestTest
+public class PostRequestTest
 	extends AbstractHttpClientTest
 {
 	@Test

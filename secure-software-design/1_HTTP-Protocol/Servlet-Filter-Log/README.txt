@@ -7,7 +7,8 @@ How to access the Web application from a browser?
 
 URL: http://localhost:8080/Servlet-Filter-Log/
 
-127.0.0.1 - - 17/Apr/2015:08:48:57 +0200 "GET /Servlet-Filter-Log/controller?username=student&password=student&action=Login HTTP/1.1" 200 127
+ 127.0.0.1 - - 09/Mar/2016:07:25:12 +0100 "GET /Servlet-Filter-Log/ HTTP/1.1" 200 933
+ 127.0.0.1 - - 09/Mar/2016:07:25:19 +0100 "GET /Servlet-Filter-Log/controller?username=student&password=student&action=Login HTTP/1.1" 200 126
 
 
 
@@ -55,7 +56,7 @@ $ mvn wildfly:run
 Make sure that you have configured the wildfly-maven-plugin:
 
 	<configuration>
-		<jbossHome>/home/student/install/wildfly-8.2.0.Final</jbossHome>
+		<jbossHome>/home/student/install/wildfly-9.0.1.Final/</jbossHome>
 		<port>9990</port>
 		<server-config>standalone.xml</server-config>
 	</configuration> 
