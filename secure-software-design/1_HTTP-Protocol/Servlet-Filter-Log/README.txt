@@ -16,7 +16,7 @@ How to configure Wildfly to support Common Logging Format?
 -------------------------------------------------------------------------------
 standalone.xml:
 
- <subsystem xmlns="urn:jboss:domain:undertow:1.2">
+ <subsystem xmlns="urn:jboss:domain:undertow:2.0">
             <buffer-cache name="default"/>
             <server name="default-server">
                 <http-listener name="default" socket-binding="http"/>
