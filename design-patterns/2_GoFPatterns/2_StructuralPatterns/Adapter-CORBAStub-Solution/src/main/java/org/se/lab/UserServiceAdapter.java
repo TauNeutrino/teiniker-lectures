@@ -13,6 +13,9 @@ public class UserServiceAdapter
 	
 	public UserServiceAdapter(user_service service)
 	{
+	    if(service == null)
+	        throw new IllegalArgumentException("Invalid service reference!");
+	    
 		this.service = service;
 	}
 	
