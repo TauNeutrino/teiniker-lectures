@@ -3,7 +3,7 @@ How to use a HTTPS connection?
 *) Create a Keystore
 
 $ pwd
-/home/student/install/wildfly-8.2.0.Final/standalone/configuration
+/home/student/install/wildfly-9.0.1.Final/standalone/configuration
 
 $ keytool -genkeypair -keystore wildfly.keystore -storepass student -keypass student -keyalg RSA -alias wildfly -dname "cn=ims,o=fhj,c=at" 
  
@@ -12,7 +12,7 @@ $ keytool -genkeypair -keystore wildfly.keystore -storepass student -keypass stu
 
     <management>
         <security-realms>
-			<!-- SSL/TLS Configuration --> 
+<!-- BEGIN SSL/TLS Configuration --> 
 			<security-realm name="CertificateRealm">
 				<server-identities>
 					<ssl>
@@ -20,26 +20,39 @@ $ keytool -genkeypair -keystore wildfly.keystore -storepass student -keypass stu
 					</ssl>
 				</server-identities>
 			</security-realm>
+<!-- END SSL/TLS Configuration --> 
 		...
 	</management>
 	
-		<!-- SSL/TLS Configuration -->        
-        <subsystem xmlns="urn:jboss:domain:undertow:1.1">
-            <buffer-cache name="default"/>
-            <server name="default-server">
-                <https-listener name="https" socket-binding="https" security-realm="CertificateRealm"/>
-                <http-listener name="default" socket-binding="http"/>
-                <host name="default-host" alias="localhost">
-                    <location name="/" handler="welcome-content"/>
-                    <filter-ref name="server-header"/>
-                    <filter-ref name="x-powered-by-header"/>
-                </host>
-            </server>	
-		...
-		</subsystem>
+ 	<subsystem xmlns="urn:jboss:domain:undertow:2.0">
+        <buffer-cache name="default"/>
+        <server name="default-server">
+            <http-listener name="default" socket-binding="http" redirect-socket="https"/>
+<!-- BEGIN SSL/TLS Configuration --> 
+            <https-listener name="https" socket-binding="https" security-realm="CertificateRealm"/>
+<!-- END SSL/TLS Configuration --> 
+            <host name="default-host" alias="localhost">
+                <location name="/" handler="welcome-content"/>
+                <access-log pattern="common" directory="${jboss.home.dir}/standalone/log" prefix="access"/>
+                <filter-ref name="server-header"/>
+                <filter-ref name="x-powered-by-header"/>
+            </host>
+        </server>
+        <servlet-container name="default">
+            <jsp-config/>
+            <websockets/>
+        </servlet-container>
+        <handlers>
+            <file name="welcome-content" path="${jboss.home.dir}/welcome-content"/>
+        </handlers>
+        <filters>
+            <response-header name="server-header" header-name="Server" header-value="WildFly/9"/>
+            <response-header name="x-powered-by-header" header-name="X-Powered-By" header-value="Undertow/1"/>
+        </filters>
+    </subsystem>
 
 *) Restart Wildfly
-	=> JBAS017519: Undertow HTTPS listener https listening on localhost/127.0.0.1:8543
+	=> JBAS017519: Undertow HTTPS listener https listening on localhost/127.0.0.1:8443
 
 
 How to access the Web application from a Browser?
