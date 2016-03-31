@@ -40,19 +40,4 @@ public class MColumn extends MNamedElement
 	{
 		this.constraints = constraints;
 	}
-
-
-	@Override
-	public String toSql()
-	{
-		StringBuilder b = new StringBuilder();
-		
-		b.append(getName()).append(" ");
-		b.append(getType().toSql()).append(" ");
-		for(MConstraint c : getConstraints())
-		{
-			b.append(c.toSql()).append(" ");
-		}
-		return b.toString();
-	}
 }

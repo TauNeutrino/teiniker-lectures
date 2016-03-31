@@ -9,10 +9,4 @@ public class MType extends MNamedElement
 	{
 		super(name);
 	}
-
-	@Override
-	public String toSql()
-	{
-		return getName();
-	}
 }

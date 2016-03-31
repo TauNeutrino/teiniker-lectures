@@ -30,24 +30,6 @@ public class MetamodelTest
 		passwd.getConstraints().add(new MConstraint("NOT NULL"));
 		table.getColumns().add(passwd);
 	}
-	
-	@Test
-	public void testSqlGeneratorComposite()
-	{
-		String sql = table.toSql();
-		
-		System.out.println(sql);
-	}
-
-	
-	@Test
-	public void testSqlGeneratorVisitor()
-	{
-		SqlGeneratorVisitor gen = new SqlGeneratorVisitor();
-		String sql = gen.visit(table);
-		
-		System.out.println(sql);
-	}
 
 	
 	@Test

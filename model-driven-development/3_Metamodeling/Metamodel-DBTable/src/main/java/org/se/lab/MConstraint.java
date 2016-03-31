@@ -9,10 +9,4 @@ public class MConstraint extends MNamedElement
 	{
 		super(name);
 	}
-	
-	@Override
-	public String toSql()
-	{
-		return getName();
-	}
 }
