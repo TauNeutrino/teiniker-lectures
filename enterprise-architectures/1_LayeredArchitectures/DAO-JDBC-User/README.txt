@@ -4,9 +4,9 @@ How to start and stop the MySQL server?
 $ su
 root66
 
-# systemctl start mysqld.service
+# systemctl start mariadb.service
 
-# systemctl stop mysqld.service
+# systemctl stop mariadb.service
 
 
 How to set the JDBC properties?
