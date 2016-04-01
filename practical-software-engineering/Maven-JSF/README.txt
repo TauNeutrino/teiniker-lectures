@@ -1,7 +1,7 @@
 How to access the Web application?
 -------------------------------------------------------------------------------
 
-Browser: http://localhost:8080/Maven-JSF
+URL: http://localhost:8080/Maven-JSF
 
 	
 	
