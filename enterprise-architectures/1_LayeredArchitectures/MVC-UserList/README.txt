@@ -4,17 +4,18 @@ How to start and stop the MySQL server?
 $ su
 root66
 
-# systemctl start mysqld.service
+# systemctl start mariadb.service
 
-# systemctl stop mysqld.service
+# systemctl stop mariadb.service
 
 
 How to install the JDBC driver in Wildfly AS?
 ---------------------------------------------------------------------
+(see Wildfly9Configurations)
 
 Install a new module within the Wildfly AS:
 
-wildfly-8.2.0.Final/modules/com/mysql/
+/home/student/install/wildfly-9.0.1.Final/
 └── main
     ├── module.xml
     └── mysql-connector-java-5.1.24-bin.jar
@@ -31,7 +32,7 @@ wildfly-8.2.0.Final/modules/com/mysql/
 
 Add a new <datasource> and <driver> element to the standalone.xml file:
 
-wildfly-8.2.0.Final/standalone/configuration/standalone.xml:
+/home/student/install/wildfly-9.0.1.Final/standalone/configuration/standalone.xml:
 
 		<subsystem xmlns="urn:jboss:domain:datasources:2.0">
             <datasources>
@@ -93,5 +94,5 @@ MariaDB [(none)]> use testdb;
 How to access tha application from a browser?
 ------------------------------------------------------------------------------
 
-http://localhost:8080/MVC-UserList/
+URL: http://localhost:8080/MVC-UserList/
 
