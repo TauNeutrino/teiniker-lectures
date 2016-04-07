@@ -19,7 +19,7 @@ Content-Length: 83
 
 role=user&firstName=Homer&lastName=Simpson&username=homer&password=homer&action=Add
 
-The hidden fields value van be changed either within the browser 
+The hidden field's value can be changed either within the browser 
 (e.g. Firebug) or by using an interception proxy (e.g. Burp).
 
 
