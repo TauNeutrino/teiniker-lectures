@@ -1,9 +1,9 @@
-TODO: Servlet - Login Attack
+Exercise: Servlet - Login Attack (Lock Out)
 ---------------------------------------------------------------------
 
 Given a simple Web application:
 
-	http://localhost:8080/Servlet-Login-Attack-Exercise/index.html
+	URL: http://localhost:8080/Servlet-Login-Attack-Exercise/index.html
 
 you can log in with the following input:
 
@@ -41,7 +41,7 @@ Brute Force Attack Prevention:
 		... for ever!!	
 	
 	To unlock a user we have to restart the application (in practice
-	we have to ask the admin to unlock the user in the database.
+	we have to release the lock after a period of time).
 
 	Tipp: Create a static Map<String,Integer> that counts the illegal
 	attempts of each user. In the case of a successful login you can

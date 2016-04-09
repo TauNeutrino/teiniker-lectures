@@ -77,51 +77,6 @@ How to Configure ApplicationRealm Authentication for Wildfly AS?
         </security-realms>
 
 
-
-How to Configure a HTTPS Connector for Wildfly AS?
--------------------------------------------------------------------------------
-*) Create a Keystore
-
-$ cd JBOSS_HOME/standalone/configuration
-$ keytool -genkeypair -keystore wildfly.keystore -storepass student -keypass student -keyalg RSA -alias wildfly -dname "cn=ims,o=fhj,c=at" 
- 
- 
-*) Configure Wildfly AS (standalone.xml):
-
-    <management>
-        <security-realms>
-			<!-- SSL/TLS Configuration --> 
-			<security-realm name="CertificateRealm">
-				<server-identities>
-					<ssl>
-						<keystore path="wildfly.keystore" relative-to="jboss.server.config.dir" keystore-password="student" />
-					</ssl>
-				</server-identities>
-			</security-realm>
-		...
-	</management>
-	
-		<!-- SSL/TLS Configuration -->        
-        <subsystem xmlns="urn:jboss:domain:undertow:1.1">
-            <buffer-cache name="default"/>
-            <server name="default-server">
-                <https-listener name="https" socket-binding="https" security-realm="CertificateRealm"/>
-                <http-listener name="default" socket-binding="http"/>
-                <host name="default-host" alias="localhost">
-                    <location name="/" handler="welcome-content"/>
-                    <filter-ref name="server-header"/>
-                    <filter-ref name="x-powered-by-header"/>
-                </host>
-            </server>	
-		...
-		</subsystem>
-
-
-*) Restart Wildfly AS
-	=> JBAS017519: Undertow HTTPS listener https listening on localhost/127.0.0.1:8543
- 
-
-
 How to Configure Authentication in the Web Application?
 -------------------------------------------------------------------------------
 (In the given Web application these settings are already done in the web.xml file)
