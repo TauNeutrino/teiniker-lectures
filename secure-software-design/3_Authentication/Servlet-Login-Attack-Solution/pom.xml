@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.se.lab</groupId>
-	<artifactId>Servlet-Login-Attack-Solution</artifactId>
+	<artifactId>Servlet-Login-Attack</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -34,7 +34,7 @@
 				<artifactId>wildfly-maven-plugin</artifactId>
 				<version>1.0.2.Final</version>
 				<configuration>
-					<jbossHome>/home/student/install/wildfly-8.2.0.Final</jbossHome>
+					<jbossHome>/home/student/install/wildfly-9.0.1.Final</jbossHome>
 					<port>9990</port>
 					<server-config>standalone.xml</server-config>
 				</configuration>
