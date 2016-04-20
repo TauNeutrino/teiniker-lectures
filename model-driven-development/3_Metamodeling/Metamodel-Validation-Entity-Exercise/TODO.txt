@@ -1,4 +1,4 @@
-TODO: Model-Validation mittels Visitor Pattern
+Exercise: Model-Validation mittels Visitor Pattern
 ---------------------------------------------------------------------
 
 Semantische Überprüfungen eines Models lassen sich sehr gut mit Hilfe
@@ -22,3 +22,4 @@ b) Die Namen von MEntity und MProperty dürfen keine Java Keywords
 	
 Tipp: Beachten Sie, dass das vorliegende Projekt eine Reference of das
 Projekt "Metamodel-Entity" besitzt.	
+
