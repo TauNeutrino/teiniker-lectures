@@ -1,4 +1,4 @@
-TODO: Expression Builder + Validation Visitor
+Exercise: Expression Builder + Validation Visitor
 ---------------------------------------------------------------------
 
 1. TableValidator 

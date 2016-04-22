@@ -4,7 +4,7 @@ package org.se.lab;
  * This Handler class defines an API for handling requests and
  * implements the successor link.
  */
-public class MailHandler
+public abstract class MailHandler
 {
     /*
      * Property: successor
