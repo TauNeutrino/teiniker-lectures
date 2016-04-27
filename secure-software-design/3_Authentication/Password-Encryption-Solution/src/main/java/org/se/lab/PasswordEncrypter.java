@@ -11,7 +11,6 @@ import org.apache.commons.codec.binary.Hex;
 
 public class PasswordEncrypter 
 {
-	
 	public String encryptPassword(String password)
 	{
 		try
@@ -35,10 +34,9 @@ public class PasswordEncrypter
 		try
 		{	
 			byte[] result = Base64.decodeBase64(hashString);			
-			byte[] salt = Arrays.copyOfRange(result, 32, 48);
+			byte[] salt = Arrays.copyOfRange(result, 0, 16);
 		
-			byte[] encryptedPassword = 	
-					encryptPasswordWithSalt(password.getBytes("UTF-8"), salt);
+			byte[] encryptedPassword = encryptPasswordWithSalt(password.getBytes("UTF-8"), salt);
 			return Arrays.equals(result, encryptedPassword);
 		}
 		catch (UnsupportedEncodingException e)
@@ -55,22 +53,23 @@ public class PasswordEncrypter
 		try
 		{
 			md = MessageDigest.getInstance("SHA-256");
-			md.update(password);
 			md.update(salt);
+			md.update(password);
 			byte[] hash = md.digest();
 			
 			// result = hash+salt		
-			byte[] result = new byte[hash.length+salt.length];
-			
-			for(int i=0; i < hash.length; i++)
-			{
-				result[i] = hash[i];
-			}
-			
-			for(int i=0; i< salt.length; i++)
-			{
-				result[hash.length + i] = salt[i];
-			}
+			byte[] result = new byte[hash.length+salt.length];						
+			System.arraycopy(salt, 0, result, 0, salt.length);
+			System.arraycopy(hash, 0, result, salt.length, hash.length);			
+//          Optional we could copy these arrays byte by byte:			
+//			for(int i=0; i< salt.length; i++)
+//			{
+//				result[i] = salt[i];
+//			}
+//			for(int i=0; i < hash.length; i++)
+//			{
+//			    result[salt.length + i] = hash[i];
+//			}
 			
 			System.out.println("hash  : " + Hex.encodeHexString(hash) + " " + hash.length + " bytes ");
 			System.out.println("salt  : " + Hex.encodeHexString(salt) + " " + salt.length + " bytes ");

@@ -7,10 +7,10 @@ Implement a class called "PasswordEncrypter" which implements two methods:
 -------------------------------------------------------------------------------
 This method gets a password string and performs the following steps:
 - generate a random salt of 16 bytes
-- concatenate the byte arrays of password and salt 
+- concatenate the byte arrays of salt and password 
 - calculate the message digest based on "SHA-256"
 
-- concatenate the message digest and the salt byte arrays 
+- concatenate the salt and the message digest byte arrays 
 - return the base64 encoded string of this result
 
 Also encapsulate all checked exceptions into the "IllegalStateException"
@@ -21,10 +21,10 @@ runtime exception (keep the exception stack-trace).
 -------------------------------------------------------------------------------
 - extract the salt byte array from the passed hashString (base64)
 
-- concatenate the byte arrays of password and salt 
+- concatenate the byte arrays of salt and password 
 - calculate the message digest based on "SHA-256"
 
-- concatenate the message digest and the salt byte arrays
+- concatenate the salt and the message diges byte arrays
 - compare this byte array with the byte array of the passed hashString
 
 - return the result of this comparison

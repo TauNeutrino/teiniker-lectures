@@ -17,8 +17,7 @@ public class PasswordEncrypterTest
 	@Test
 	public void testCheckPasswords()
 	{
-		Assert.assertTrue(manager.checkPassword("Trink4Bier", "iSWOkuMQ+qV5G8oLNg432X5iti4OAHs79ar+lfKg1npFsspEbUuAvrhDjYzXsxmc"));
-		Assert.assertTrue(manager.checkPassword("ase4all", "vOz4EjH2bHEYPABpg30Dp+eE0qJcQlKS0wLkoR/9xQ0X1OviLVLy9BQ2b45vMHzB"));
+		Assert.assertTrue(manager.checkPassword("Trink4Bier","vAC/2oo6CtpRA8Pw9SehaR3gUvtbD+6p0v46Q7bX1KX0amSZbeyzAp4Ze/H0FjDX"));
 	}
 	
 	@Test
