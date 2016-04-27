@@ -39,7 +39,7 @@ public class BruteForceTest
 	@Test
 	public void testPasswordBruteForceAttack() throws NoSuchAlgorithmException, IOException
 	{
-		final String hashValue = "bb3340cfb96337e142cdd810678c0207be932bd8e6cd2890fbff2304491258efb07e6a51738ffd57dada2475b45f65650a5a2e2132a491766c8d7d7c67a9c85b";
+		final String hashValue = "87b04ccaabf92ceb5fe39a7bb4c79676f3f8870d3cf2bb218e91ec5aea5bc3eabfc51a72d7669564640ad90c85dbed07b21660ab030fd08aaa5a7867ab4ea989";
 		final String filename = "wordlist.txt";
 			
 		BufferedReader in = new BufferedReader(new FileReader(filename));			
