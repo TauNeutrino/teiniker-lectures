@@ -1,3 +1,0 @@
-TODOs:
-
-o) Testfälle für JavaBean!!
