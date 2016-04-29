@@ -17,7 +17,7 @@ request to that domain.
 ---------------------------------------------------------------------
 Note that every client connecting to this Servlet can change its value.
 
-URL: http://localhost:8080/Servlet-SessionManagement/counter.html?action=Increment
+URL: http://localhost:8080/Servlet-SessionManagement/counter.html
 
 
 2. SessionServlet

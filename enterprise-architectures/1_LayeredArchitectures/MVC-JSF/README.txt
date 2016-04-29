@@ -1,3 +1,10 @@
+How to access the Web application?
+-------------------------------------------------------------------------------
+
+Browser: http://localhost:8080/MVC-JSF
+
+
+
 Anatomy of a simple JSF Web application
 -------------------------------------------------------------------------------
 
@@ -123,13 +130,7 @@ How to build a JSF Web application using maven?
 	</repositories>
 
 	Note that we also specify the location of the PrimeFaces repository!
-	
-	
-How to access the Web application?
--------------------------------------------------------------------------------
-
-Browser: http://localhost:8080/MVC-JSF-Login
-
+		
 
 How to use CDI for managed beans?
 -------------------------------------------------------------------------------
