@@ -16,7 +16,7 @@ How to install the JDBC driver in Wildfly AS?
 Install a new module within the Wildfly AS:
 
 /home/student/install/wildfly-9.0.1.Final/
-└── main
+└── modules/com/mysql/main/
     ├── module.xml
     └── mysql-connector-java-5.1.24-bin.jar
 
