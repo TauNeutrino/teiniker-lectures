@@ -27,7 +27,7 @@ public class OrderTest
 	@Before
 	public void setup() throws JAXBException
 	{
-		context = JAXBContext.newInstance("org.se.lab");
+		context = JAXBContext.newInstance(Order.class);
 	}
 		
 	@Test
