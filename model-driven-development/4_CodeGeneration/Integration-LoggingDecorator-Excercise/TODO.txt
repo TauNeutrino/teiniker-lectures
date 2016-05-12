@@ -1,4 +1,4 @@
- Integration of Generated Code
+Exercise: Integration of Generated Code
 -------------------------------------------------------------------------------
 
 1. Refactoring
@@ -25,6 +25,6 @@ einzubinden.
 
 Tipp: Vergessen Sie nicht den MySQL Server zu starten:
 
-# systemctl start mysqld.service
+# systemctl start mariadb.service
 
 

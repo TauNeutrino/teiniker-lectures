@@ -19,11 +19,11 @@ public class AddRequestHandler
 		if(action.equals("Add"))
 		{
 			String sql = new StringBuilder()
-				.append("INSERT INTO user VALUES (NULL,")
-				.append(firstName).append(',')
-				.append(lastName).append(',')
-				.append(username).append(',')
-				.append(password).append(')')
+				.append("INSERT INTO user VALUES (NULL,'")
+				.append(firstName).append("','")
+				.append(lastName).append("','")
+				.append(username).append("','")
+				.append(password).append("')")
 				.toString();
 		
 			// TODO: Use a prepared statement to prevent SQL injection attacks

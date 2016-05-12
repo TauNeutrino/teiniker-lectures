@@ -25,6 +25,6 @@ einzubinden.
 
 Tipp: Vergessen Sie nicht den MySQL Server zu starten:
 
-# systemctl start mysqld.service
+# systemctl start mariadb.service
 
 

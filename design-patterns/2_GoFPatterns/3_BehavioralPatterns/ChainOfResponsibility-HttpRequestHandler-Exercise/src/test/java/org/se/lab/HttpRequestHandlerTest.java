@@ -31,7 +31,7 @@ public class HttpRequestHandlerTest
 		request.getParameters().put("username", "homer");
 		request.getParameters().put("password", "homer");
 		
-		final String SQL = "INSERT INTO user VALUES (NULL,Homer,Simpson,homer,homer)";
+		final String SQL = "INSERT INTO user VALUES(NULL,'Homer','Simpson','homer','homer');";
 		Assert.assertEquals(SQL, handler.handleRequest(request));
 	}
 
@@ -43,7 +43,7 @@ public class HttpRequestHandlerTest
 		request.getParameters().put("action", "Delete");
 		request.getParameters().put("id", "7");
 		
-		final String SQL = "DELETE FROM user WHERE ID = 7";
+		final String SQL = "DELETE FROM user WHERE ID = 7;";
 		Assert.assertEquals(SQL, handler.handleRequest(request));		
 	}
 
