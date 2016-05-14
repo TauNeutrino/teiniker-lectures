@@ -12,6 +12,7 @@ a) Generic Code
 b) Generated Code
 	src/main/generated/
 		org.se.lab
+			User.java
 			UserDAOBase.java
 			UserDAOImplBase.java
 			
@@ -36,7 +37,7 @@ How to run the MySQL server?
 
 To start the MySQL server in the VM type (as root):
 
-# systemctl start mysqld.service
+# systemctl start mariadb.service
 
 Note that all tables and data is installed during the test's setup
 phase.
