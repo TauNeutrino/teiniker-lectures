@@ -11,7 +11,7 @@ Authentication and Authorization Service (JAAS) login modules ans subjects.
 How to Generate ApplicationRealm Credentials for Wildfly AS?
 -------------------------------------------------------------------------------
 
-$ cd JBOSS_HOME/
+$ cd /home/student/install/wildfly-9.0.1.Final/
 
 $ bin/add-user.sh 
 What type of user do you wish to add? 
@@ -45,6 +45,7 @@ Is this new user going to be used for one AS process to connect to another AS pr
 e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
 yes/no? no
 
+/home/student/install/wildfly-9.0.1.Final/standalone/configuration:
  
 $ cat application-users.properties 
 # Properties declaration of users for the realm 'ApplicationRealm' which is the default realm
@@ -148,7 +149,7 @@ How to Implement an Authentication Form?
 The HTML form used to send the credentials to the server must be configured in 
 three specific ways:
 a) The value of its <form> element's action attribute must be j_security_check
-b) The username mut be sent in a field named j_username
+b) The username must be sent in a field named j_username
 c) The password must be sent in a field named j_password
 
 see login.html

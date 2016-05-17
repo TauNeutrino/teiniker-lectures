@@ -7,18 +7,6 @@ How to access the Web application from a browser?
 URL: http://localhost:8080/SpringSecurity-SessionManagement/
 
 
-How to use HTTP Basic authentication?
--------------------------------------------------------------------------------
-
-Replace <form-login/> with <http-basic/>
-
-Analyze the HTTP headers used in the request response transactions.
-Authorization: Basic c3R1ZGVudDpzdHVkZW50
-decode base64 => student:student
-
-Note that there is no explicit logout (except to close the browser). 
-
-
 How to add HTTPS support?
 -------------------------------------------------------------------------------
 Change or add the following configurations to the spring-security.xml
@@ -143,6 +131,17 @@ Also we need a login.html page:
 </html>
 
 
+How to use HTTP Basic authentication?
+-------------------------------------------------------------------------------
+
+Replace <form-login/> with <http-basic/>
+
+Analyze the HTTP headers used in the request response transactions.
+Authorization: Basic c3R1ZGVudDpzdHVkZW50
+decode base64 => student:student
+
+Note that there is no explicit logout (except to close the browser). 
+
 	
 		
 How to run Wildfly and deploy the Web application?
@@ -153,7 +152,7 @@ $ mvn wildfly:run
 Make sure that you have configured the wildfly-maven-plugin:
 
 	<configuration>
-		<jbossHome>/home/student/install/wildfly-8.2.0.Final</jbossHome>
+		<jbossHome>/home/student/install/wildfly-9.0.1.Final</jbossHome>
 		<port>9990</port>
 		<server-config>standalone.xml</server-config>
 	</configuration> 
