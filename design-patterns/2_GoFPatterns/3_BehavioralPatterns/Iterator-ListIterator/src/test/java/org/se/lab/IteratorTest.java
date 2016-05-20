@@ -19,9 +19,19 @@ public class IteratorTest
     }
     
     @Test
+    public void testForEach()
+    {
+        for(String s : list)
+        {
+            System.out.println(s);
+        }
+    }
+    
+    
+    @Test
     public void testIterator()
     {
-        for(Iterator<String> it = list.iterator(); it.hasNext();)
+        for(Iterator<String> it = list.iterator(); it.hasNext(); )
         {
             String s = it.next();
             System.out.println(s);
