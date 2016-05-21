@@ -33,4 +33,19 @@ public class IteratorTest
         Assert.assertEquals("[eins, zwei, drei, vier]", result.toString());
     }
     
+    
+    @Test
+    public void testForEach()
+    {
+        List<String> result = new ArrayList<>();
+        
+        for(String s : list )
+        {
+            result.add(s.toLowerCase());
+        }        
+        
+        Assert.assertEquals("[eins, zwei, drei, vier]", result.toString());
+    }
+    
+    
 }

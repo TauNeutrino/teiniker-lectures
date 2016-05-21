@@ -19,7 +19,7 @@ public class ListProcessorTest
     }
     
     @Test
-    public void testToUpperCaseUsingCommand()
+    public void testToLowerCaseUsingCommand()
     {
         List<String> result = ListProcessor.process(list, new ToLowerCommand());
         
@@ -34,19 +34,19 @@ public class ListProcessorTest
                 new Command() {
                     public String process(String s)
                     {
-                        return s.toUpperCase();
+                        return s.toLowerCase();
                     }
                 });
         
-        Assert.assertEquals("[EINS, ZWEI, DREI, VIER]", result.toString());
+        Assert.assertEquals("[eins, zwei, drei, vier]", result.toString());
     }
 
     @Test
-    public void testToUpperCaseUsingLambda()
+    public void testToLowerCaseUsingLambda()
     {
-        List<String> result = ListProcessor.process(list, s -> s.toUpperCase());
+        List<String> result = ListProcessor.process(list, (s) -> s.toLowerCase());
         
-        Assert.assertEquals("[EINS, ZWEI, DREI, VIER]", result.toString());
+        Assert.assertEquals("[eins, zwei, drei, vier]", result.toString());
     }
     
 }

@@ -3,7 +3,7 @@ package org.se.lab;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ListProcessor
+public class ListProcessor
 {
     public static List<String> process(List<String> list, Command cmd)
     {
