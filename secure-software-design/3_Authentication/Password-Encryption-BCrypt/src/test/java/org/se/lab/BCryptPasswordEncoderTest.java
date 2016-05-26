@@ -24,7 +24,7 @@ public class BCryptPasswordEncoderTest
     public void testEncoderSettingStrength()
     {
         String password = "student";        
-        PasswordEncoder encoder = new BCryptPasswordEncoder(12);
+        PasswordEncoder encoder = new BCryptPasswordEncoder(14);
         
         String hashedPassword = encoder.encode(password);        
         System.out.println(hashedPassword);
