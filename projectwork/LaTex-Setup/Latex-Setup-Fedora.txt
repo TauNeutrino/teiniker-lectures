@@ -9,3 +9,6 @@ $ yum install texlive-babel-german
 
 $ yum install texlive-harvard
 $ yum install texlive-harvard-doc
+
+$ yum install texlive-multirow
+$ yum install texlive-multirow-doc
