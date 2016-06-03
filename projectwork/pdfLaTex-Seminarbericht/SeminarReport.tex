@@ -22,7 +22,22 @@
 %\usepackage{graphicx}
 \usepackage[pdftex]{color,graphicx}
 
+% Use multirow package to handle multiple row and multiple column tables
 \usepackage{multirow}
+
+% Use listings package to handle source code 
+\usepackage{listings}
+\lstset{ % General setup for the package
+	language=Java,
+	basicstyle=\small\ttfamily,
+	tabsize=4,
+	numbers=left,
+	frame=lines,
+	keepspaces,
+	commentstyle=\color{green},
+	keywordstyle=\color{blue}\bf
+}
+
 
 % Use the harvard family of bibliographic styles.
 \usepackage{harvard}
